@@ -14,7 +14,8 @@
     "lint:all": "npm run lint:server && npm run lint:web",
     "format:server": "npm run format -w server",
     "format:web": "npm run format -w web",
-    "format:all": "npm run format:server && npm run format:web"
+    "format:all": "npm run format:server && npm run format:web",
+    "postinstall": "git config core.hooksPath ./.hooks"
   },
   "repository": {
     "type": "git",

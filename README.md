@@ -89,3 +89,4 @@ touch .prettierrc.cjs
 ## pre commit
 https://stackoverflow.com/a/40828248/13723015
 https://gist.github.com/linhmtran168/2286aeafe747e78f53bf#file-pre-commit-eslint-L23
+https://stackoverflow.com/questions/3703159/git-remote-shared-pre-commit-hook
