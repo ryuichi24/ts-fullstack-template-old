@@ -8,7 +8,11 @@
     "dev:web": "npm run dev -w web",
     "watch:server": "npm run watch -w server",
     "build:server": "npm run build -w server",
-    "build:web": "npm run build -w web"
+    "build:web": "npm run build -w web",
+    "format:server": "npm run format -w server",
+    "format:web": "npm run format -w web",
+    "lint:server": "npm run lint -w server",
+    "lint:web": "npm run lint -w web"
   },
   "repository": {
     "type": "git",
