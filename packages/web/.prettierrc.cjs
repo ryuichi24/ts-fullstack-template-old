@@ -4,5 +4,5 @@ module.exports = {
     semi: true,
     singleQuote: false,
     arrowParens: 'always',
-    printWidth: 120,
+    printWidth: 100,
 };
