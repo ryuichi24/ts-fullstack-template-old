@@ -1,0 +1,28 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "<h1 align=\"center\">TS Fullstack Template</h1>",
+  "main": "index.js",
+  "scripts": {
+    "dev:server": "npm run dev -w server",
+    "dev:web": "npm run dev -w web",
+    "watch:server": "npm run watch -w server",
+    "build:server": "npm run build -w server",
+    "build:web": "npm run build -w web"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryuichi24/ts-fullstack-template.git"
+  },
+  "keywords": [],
+  "author": "Ryuichi Nishi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ryuichi24/ts-fullstack-template/issues"
+  },
+  "homepage": "https://github.com/ryuichi24/ts-fullstack-template#readme",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}
