@@ -9,10 +9,12 @@
     "watch:server": "npm run watch -w server",
     "build:server": "npm run build -w server",
     "build:web": "npm run build -w web",
+    "lint:server": "npm run lint -w server",
+    "lint:web": "npm run lint -w web",
+    "lint:all": "npm run lint:server && npm run lint:web",
     "format:server": "npm run format -w server",
     "format:web": "npm run format -w web",
-    "lint:server": "npm run lint -w server",
-    "lint:web": "npm run lint -w web"
+    "format:all": "npm run format:server && npm run format:web"
   },
   "repository": {
     "type": "git",
