@@ -1,0 +1,10 @@
+// https://stackoverflow.com/a/64283139/13723015
+{
+    "extends": "./tsconfig.json",
+    "include": [
+        // repeated from base config's "include" setting
+        "src",
+        // these are the eslint-only inclusions
+        ".eslintrc.cjs",
+    ]
+}

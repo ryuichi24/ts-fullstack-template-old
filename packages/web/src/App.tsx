@@ -9,16 +9,17 @@ function App() {
   useEffect(() => {
     fetch("http://localhost:5555")
       .then((res) => res.text())
-      .then((text) => setServerRes(text));
+      .then((text) => setServerRes(text))
+      .catch(err => console.error(err));
   }, []);
 
   return (
     <div className="App">
       <div>
-        <a href="https://vitejs.dev" target="_blank">
+        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
           <img src="/vite.svg" className="logo" alt="Vite logo" />
         </a>
-        <a href="https://reactjs.org" target="_blank">
+        <a href="https://reactjs.org" target="_blank" rel="noreferrer">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>

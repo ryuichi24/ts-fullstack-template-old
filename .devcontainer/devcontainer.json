@@ -21,6 +21,7 @@
 	"fosshaas.fontsize-shortcuts",
 	"mtxr.sqltools",
 	"redhat.vscode-yaml",
-	"kumar-harsh.graphql-for-vscode"
+	"kumar-harsh.graphql-for-vscode",
+	"dbaeumer.vscode-eslint"
 ]
 }
