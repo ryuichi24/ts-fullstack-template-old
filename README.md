@@ -42,7 +42,7 @@ npx tsc --init
 
 ## add eslint and formatter
 ```bash
-npm install -D -E eslint
+npm install -D -E eslint prettier
 ```
 
 ```bash
@@ -80,4 +80,8 @@ Successfully created .eslintrc.cjs file in /home/vscode/workspace/packages/web
 
 ```bash
 npm install -D -E eslint-plugin-react-hooks
+```
+
+```bash
+touch .prettierrc.cjs
 ```
