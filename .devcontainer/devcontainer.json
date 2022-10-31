@@ -15,13 +15,13 @@
     "git.mergeEditor": false
   },
   "extensions": [
-	"esbenp.prettier-vscode",
-	"rangav.vscode-thunder-client",
-	"streetsidesoftware.code-spell-checker",
-	"fosshaas.fontsize-shortcuts",
-	"mtxr.sqltools",
-	"redhat.vscode-yaml",
-	"kumar-harsh.graphql-for-vscode",
-	"dbaeumer.vscode-eslint"
-]
+    "esbenp.prettier-vscode",
+    "rangav.vscode-thunder-client",
+    "streetsidesoftware.code-spell-checker",
+    "fosshaas.fontsize-shortcuts",
+    "mtxr.sqltools",
+    "redhat.vscode-yaml",
+    "kumar-harsh.graphql-for-vscode",
+    "dbaeumer.vscode-eslint"
+  ]
 }
