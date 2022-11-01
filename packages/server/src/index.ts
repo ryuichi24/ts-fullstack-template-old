@@ -12,7 +12,9 @@ async function main() {
     const HOST = process.env.HOST || "localhost";
     const app = express();
 
-    fetch("https://example.com", { method: "GET", headers: {} }).then(console.log).catch(console.log)
+    fetch("https://example.com", { method: "GET", headers: {} })
+        .then(console.log)
+        .catch(console.log);
 
     app.use(
         cors({

@@ -136,6 +136,8 @@ https://stackoverflow.com/a/69228464/13723015
 https://tech.fun-toy-life.com/entry/2022/09/09/202450
 https://zenn.dev/naonao70/articles/26fa670a2ef31c
 https://www.webopixel.net/javascript/1777.html
+https://zenn.dev/iamtillmans/articles/171f41fbd03c89
+https://zenn.dev/longbridge/articles/9e9758181c8846
 ```bash
 npm install -D -E jest ts-jest @types/jest @testing-library/react @testing-library/user-event @testing-library/jest-dom jest-environment-jsdom cross-fetch
 ```
