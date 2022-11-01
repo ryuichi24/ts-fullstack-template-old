@@ -9,6 +9,7 @@
     "watch:server": "npm run watch -w server",
     "build:server": "npm run build -w server",
     "build:web": "npm run build -w web",
+    "build:all": "npm run build:server && npm run build:web",
     "lint:server": "npm run lint -w server",
     "lint:web": "npm run lint -w web",
     "lint:all": "npm run lint:server && npm run lint:web",
