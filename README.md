@@ -91,9 +91,9 @@ https://stackoverflow.com/a/40828248/13723015
 https://gist.github.com/linhmtran168/2286aeafe747e78f53bf#file-pre-commit-eslint-L23
 https://stackoverflow.com/questions/3703159/git-remote-shared-pre-commit-hook
 
-## add jest
+## add jest in server
 ```bash
-npm install -D -E jest ts-jest @types/jest ts-node
+npm install -D -E jest ts-jest @types/jest ts-node ts-jest-resolver
 ```
 
 ```bash
@@ -101,6 +101,8 @@ npx ts-jest config:init
 ```
 
 ## add tailwind
+https://tailwindcss.com/docs/configuration#type-script-types
+s
 ```bash
 npm install -D -E tailwindcss postcss autoprefixer
 ```
@@ -127,4 +129,13 @@ module.exports = {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+```
+
+## jest in web
+https://stackoverflow.com/a/69228464/13723015
+https://tech.fun-toy-life.com/entry/2022/09/09/202450
+https://zenn.dev/naonao70/articles/26fa670a2ef31c
+https://www.webopixel.net/javascript/1777.html
+```bash
+npm install -D -E jest ts-jest @types/jest @testing-library/react @testing-library/user-event @testing-library/jest-dom jest-environment-jsdom cross-fetch
 ```
