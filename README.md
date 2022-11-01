@@ -144,3 +144,6 @@ npm install -D -E jest ts-jest @types/jest @testing-library/react @testing-libra
 
 ## es module vs commonjs
 https://zenn.dev/longbridge/articles/9e9758181c8846
+
+## sum
+https://www.pixelmatters.com/blog/how-to-set-up-a-front-end-project-with-vite-react-and-typescript
