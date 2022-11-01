@@ -141,3 +141,6 @@ https://zenn.dev/longbridge/articles/9e9758181c8846
 ```bash
 npm install -D -E jest ts-jest @types/jest @testing-library/react @testing-library/user-event @testing-library/jest-dom jest-environment-jsdom cross-fetch
 ```
+
+## es module vs commonjs
+https://zenn.dev/longbridge/articles/9e9758181c8846
