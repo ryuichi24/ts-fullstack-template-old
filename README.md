@@ -99,3 +99,32 @@ npm install -D -E jest ts-jest @types/jest ts-node
 ```bash
 npx ts-jest config:init
 ```
+
+## add tailwind
+```bash
+npm install -D -E tailwindcss postcss autoprefixer
+```
+
+```bash
+npx tailwindcss init -p
+```
+
+```js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```

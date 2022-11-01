@@ -6,5 +6,7 @@
         "src",
         // these are the eslint-only inclusions
         ".eslintrc.cjs",
+        "postcss.config.cjs",
+        "tailwind.config.cjs"
     ]
 }
