@@ -1,6 +1,6 @@
 // https://jestjs.io/docs/mock-function-api
 import { expect, jest, test } from "@jest/globals";
-import { fetch } from "./fetch";
+import { fetch } from "./fetch.js";
 
 describe("it should fetch one todo item", () => {
     test("fetch get request test", async () => {

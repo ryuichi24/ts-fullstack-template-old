@@ -1,5 +1,10 @@
 import express from "express";
 import cors from "cors";
+// https://stackoverflow.com/questions/65873101/node-requires-file-extension-for-import-statement/65874173#65874173
+// https://stackoverflow.com/a/70682797/13723015
+// https://stackoverflow.com/questions/72213760/typescript-node-error-err-module-not-found-cannot-find-module/72215487#72215487
+// https://www.memory-lovers.blog/entry/2022/05/31/110000
+// https://stackoverflow.com/a/64543163/13723015
 
 async function main() {
     const PORT = process.env.PORT || 5555;
