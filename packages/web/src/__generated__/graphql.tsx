@@ -1,5 +1,5 @@
-import { gql } from '@apollo/client';
-import * as Apollo from '@apollo/client';
+import { gql } from "@apollo/client";
+import * as Apollo from "@apollo/client";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -8,38 +8,43 @@ export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Mayb
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string;
-  String: string;
-  Boolean: boolean;
-  Int: number;
-  Float: number;
+    ID: string;
+    String: string;
+    Boolean: boolean;
+    Int: number;
+    Float: number;
 };
 
 export type Book = {
-  __typename?: 'Book';
-  author?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
+    __typename?: "Book";
+    author?: Maybe<Scalars["String"]>;
+    title?: Maybe<Scalars["String"]>;
 };
 
 export type Query = {
-  __typename?: 'Query';
-  books?: Maybe<Array<Maybe<Book>>>;
+    __typename?: "Query";
+    books?: Maybe<Array<Maybe<Book>>>;
 };
 
-export type BooksQueryVariables = Exact<{ [key: string]: never; }>;
+export type BooksQueryVariables = Exact<{ [key: string]: never }>;
 
-
-export type BooksQuery = { __typename?: 'Query', books?: Array<{ __typename?: 'Book', title?: string | null, author?: string | null } | null> | null };
-
+export type BooksQuery = {
+    __typename?: "Query";
+    books?: Array<{
+        __typename?: "Book";
+        title?: string | null;
+        author?: string | null;
+    } | null> | null;
+};
 
 export const BooksDocument = gql`
     query Books {
-  books {
-    title
-    author
-  }
-}
-    `;
+        books {
+            title
+            author
+        }
+    }
+`;
 
 /**
  * __useBooksQuery__
@@ -56,14 +61,18 @@ export const BooksDocument = gql`
  *   },
  * });
  */
-export function useBooksQuery(baseOptions?: Apollo.QueryHookOptions<BooksQuery, BooksQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<BooksQuery, BooksQueryVariables>(BooksDocument, options);
-      }
-export function useBooksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<BooksQuery, BooksQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<BooksQuery, BooksQueryVariables>(BooksDocument, options);
-        }
+export function useBooksQuery(
+    baseOptions?: Apollo.QueryHookOptions<BooksQuery, BooksQueryVariables>
+) {
+    const options = { ...defaultOptions, ...baseOptions };
+    return Apollo.useQuery<BooksQuery, BooksQueryVariables>(BooksDocument, options);
+}
+export function useBooksLazyQuery(
+    baseOptions?: Apollo.LazyQueryHookOptions<BooksQuery, BooksQueryVariables>
+) {
+    const options = { ...defaultOptions, ...baseOptions };
+    return Apollo.useLazyQuery<BooksQuery, BooksQueryVariables>(BooksDocument, options);
+}
 export type BooksQueryHookResult = ReturnType<typeof useBooksQuery>;
 export type BooksLazyQueryHookResult = ReturnType<typeof useBooksLazyQuery>;
 export type BooksQueryResult = Apollo.QueryResult<BooksQuery, BooksQueryVariables>;
