@@ -147,3 +147,48 @@ https://zenn.dev/longbridge/articles/9e9758181c8846
 
 ## sum
 https://www.pixelmatters.com/blog/how-to-set-up-a-front-end-project-with-vite-react-and-typescript
+
+## add apollo server
+```bash
+npm -E install @apollo/server graphql
+```
+
+## add graphql type code generator
+```bash
+npm install -D -E @graphql-codegen/cli @graphql-codegen/typescript-react-apollo
+```
+
+```bash
+mkdir src/graphql && mkdir generated
+```
+
+```bash
+npx graphql-code-generator init
+```
+
+```bash
+vscode@fc1b701e9cf0:~/workspace/packages/web$ npx graphql-code-generator init
+
+    Welcome to GraphQL Code Generator!
+    Answer few questions and we will setup everything for you.
+  
+? What type of application are you building? Application built with React
+? Where is your schema?: (path or url) http://localhost:5555/graphql
+? Where are your operations and fragments?: src/graphql/**/*.graphql
+? Where to write the output: src/generated
+? Do you want to generate an introspection file? No
+? How to name the config file? codegen.yml
+? What script in package.json should run the codegen? gen
+
+    Config file generated at codegen.yml
+
+      $ npm install
+
+    To install the plugins.
+
+      $ npm run gen
+
+    To run GraphQL Code Generator.
+```
+
+https://github.com/dotansimha/graphql-code-generator/issues/8488
