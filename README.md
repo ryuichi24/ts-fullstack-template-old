@@ -155,7 +155,11 @@ npm -E install @apollo/server graphql
 
 ## add graphql type code generator
 ```bash
-npm install -D -E @graphql-codegen/cli @graphql-codegen/typescript-react-apollo
+npm install -E @apollo/client graphql
+```
+
+```bash
+npm install -D -E @graphql-codegen/cli @graphql-codegen/typescript-react-apollo @graphql-codegen/typescript @graphql-codegen/typescript-operations
 ```
 
 ```bash
@@ -192,3 +196,8 @@ vscode@fc1b701e9cf0:~/workspace/packages/web$ npx graphql-code-generator init
 ```
 
 https://github.com/dotansimha/graphql-code-generator/issues/8488
+
+
+## others
+
+https://github.com/vitejs/vite/issues/383

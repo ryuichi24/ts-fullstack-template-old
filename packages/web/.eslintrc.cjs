@@ -23,6 +23,8 @@ module.exports = {
     project: ["tsconfig.eslint.json"],
   },
   plugins: ["react", "@typescript-eslint"],
+  // https://eslint.org/docs/latest/user-guide/configuring/ignoring-code
+  ignorePatterns: ["**/generated/*ts"],
   rules: {
     "react/react-in-jsx-scope": "off",
   },

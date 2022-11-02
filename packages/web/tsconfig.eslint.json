@@ -2,13 +2,12 @@
 {
     "extends": "./tsconfig.json",
     "include": [
-        // repeated from base config's "include" setting
         "src",
-        // these are the eslint-only inclusions
         ".eslintrc.cjs",
         "postcss.config.cjs",
         "tailwind.config.cjs",
         "jest.config.ts",
-        "vite.config.ts"
+        "vite.config.ts",
+        "codegen.yml"
     ]
 }

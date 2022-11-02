@@ -9,13 +9,20 @@
     "test": "jest --coverage",
     "preview": "vite preview",
     "lint": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx,json}\"",
-    "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
+    "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "gen": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
+    "@apollo/client": "3.7.1",
+    "graphql": "16.6.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "2.13.11",
+    "@graphql-codegen/typescript": "2.8.1",
+    "@graphql-codegen/typescript-operations": "2.5.6",
+    "@graphql-codegen/typescript-react-apollo": "3.3.6",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "13.4.0",
     "@testing-library/user-event": "14.4.3",
