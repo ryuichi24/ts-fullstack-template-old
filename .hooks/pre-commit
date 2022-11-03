@@ -16,15 +16,15 @@ fi
 
 echo -e "\n${GREEN}LINT SUCCEEDED!${NC}\n"
 
-echo -e "\n${GREEN}FORMAT STARTED...${NC}\n"
-npm run format:all
+# echo -e "\n${GREEN}FORMAT STARTED...${NC}\n"
+# npm run format:all
 
-if [[ "$?" != 0 ]]; then
-  echo -e "\n${RED}FORMAT FAILED${NC}\n"
-  exit 1
-fi
+# if [[ "$?" != 0 ]]; then
+#   echo -e "\n${RED}FORMAT FAILED${NC}\n"
+#   exit 1
+# fi
 
-echo -e "\n${GREEN}FORMAT SUCCEEDED!${NC}\n"
+# echo -e "\n${GREEN}FORMAT SUCCEEDED!${NC}\n"
 
 echo -e "\n${GREEN}COMMIT SUCCEEDED!${NC}\n"
 
