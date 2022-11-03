@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useBooksQuery } from "./__generated__/graphql.js";
+import { useBooksQuery } from "./__generated__/graphql";
 
 function App() {
     const { data, loading, error } = useBooksQuery({
