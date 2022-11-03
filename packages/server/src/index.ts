@@ -2,6 +2,8 @@ import http from "http";
 import express from "express";
 import cors from "cors";
 import { ApolloServer } from "@apollo/server";
+// https://www.the-guild.dev/graphql/tools/docs/introduction
+import { mergeResolvers, mergeTypeDefs } from '@graphql-tools/merge'
 import { expressMiddleware } from "@apollo/server/express4";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 // https://stackoverflow.com/questions/65873101/node-requires-file-extension-for-import-statement/65874173#65874173
@@ -37,7 +39,6 @@ const resolvers = {
         books: () => books,
     },
 };
-
 async function main() {
     const PORT = process.env.PORT || 5555;
     const HOST = process.env.HOST || "localhost";
@@ -48,10 +49,11 @@ async function main() {
     const httpServer = http.createServer(app);
 
     const server = new ApolloServer({
-        typeDefs,
-        resolvers,
+        typeDefs: mergeTypeDefs([typeDefs]),
+        resolvers: mergeResolvers([resolvers]),
         // shut down gracefully.
         // https://www.apollographql.com/docs/apollo-server/workflow/build-run-queries
+        // https://www.apollographql.com/docs/apollo-server/api/plugin/drain-http-server
         plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
     });
 
