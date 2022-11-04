@@ -1,7 +1,9 @@
 /* eslint-disable */
 module.exports = {
+    // https://stackoverflow.com/questions/49525310/error-console-is-not-defined-no-undef-brackets
     env: {
         es2021: true,
+        node: true,
     },
     extends: [
         "eslint:recommended",

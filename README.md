@@ -244,6 +244,7 @@ Fetching latest versions of selected plugins...
 ## add prisma
 https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/mongodb-typescript-mongodb
 https://www.prisma.io/docs/guides/migrate-to-prisma/migrate-from-mongoose
+https://stackoverflow.com/questions/72282755/prisma-mongodb-cant-create-a-user-model
 
 ```bash
 npm install -E prisma @prisma/client
@@ -269,6 +270,15 @@ Next steps:
 
 More information in our documentation:
 https://pris.ly/d/getting-started
+```
+
+## add auth
+```bash
+npm install -E jsonwebtoken argon2 nodemailer
+```
+
+```bash
+npm install -D -E @types/nodemailer dotenv
 ```
 
 ## others

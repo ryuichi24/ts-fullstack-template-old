@@ -19,6 +19,7 @@
     "format:server": "npm run format -w server",
     "format:web": "npm run format -w web",
     "format:all": "npm run format:server && npm run format:web",
+    "init:mailer-account:server": "npm run init:mailer-account -w server",
     "postinstall": "git config core.hooksPath ./.hooks"
   },
   "repository": {

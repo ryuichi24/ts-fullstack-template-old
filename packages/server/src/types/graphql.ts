@@ -14,6 +14,7 @@ export interface MyContext {
 type Resolver = (parent: any, args: any, context: MyContext, info: any) => any;
 
 // https://www.the-guild.dev/graphql/tools/docs/resolvers
+// maybe not needed because of code generator
 export interface ResolverMap {
     [key: string]: {
         [key: string]: Resolver | { [key: string]: Resolver };

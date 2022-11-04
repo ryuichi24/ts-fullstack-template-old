@@ -12,10 +12,12 @@ datasource db {
 
 model User {
   // https://github.com/prisma/prisma/issues/2933
-  id String @id @default(uuid()) @map("_id")
-  email String @unique
-  passwordHash String
+  id               String   @id @default(uuid()) @map("_id")
+  email            String   @unique
+  passwordHash     String
+  isEmailConfirmed Boolean  @default(false)
+  emailConfirmToken       String   @unique
   // https://github.com/prisma/prisma/issues/12572
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 }
