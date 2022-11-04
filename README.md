@@ -153,7 +153,7 @@ https://www.pixelmatters.com/blog/how-to-set-up-a-front-end-project-with-vite-re
 npm -E install @apollo/server graphql
 ```
 
-## add graphql type code generator
+## add graphql type code generator for web
 ```bash
 npm install -E @apollo/client graphql
 ```
@@ -196,6 +196,50 @@ vscode@fc1b701e9cf0:~/workspace/packages/web$ npx graphql-code-generator init
 ```
 
 https://github.com/dotansimha/graphql-code-generator/issues/8488
+
+
+## add graphql type code generator for server
+https://www.apollographql.com/docs/apollo-server/workflow/generate-types/
+
+```bash
+npm install -D -E @graphql-codegen/cli @graphql-codegen/typescript @graphql-codegen/typescript-resolvers
+```
+
+```bash
+mkdir src/generated
+```
+
+```bash
+npx graphql-code-generator init
+```
+
+```bash
+vscode@fc1b701e9cf0:~/workspace/packages/server$ npx graphql-code-generator init
+
+    Welcome to GraphQL Code Generator!
+    Answer few questions and we will setup everything for you.
+  
+? What type of application are you building? Backend - API or server
+? Where is your schema?: (path or url) http://localhost:5555/graphql
+? Pick plugins: TypeScript (required by other typescript plugins), TypeScript Resolvers (strongly typed resolve functions)
+? Where to write the output: src/generated/graphql.ts
+? Do you want to generate an introspection file? No
+? How to name the config file? codegen.yml
+? What script in package.json should run the codegen? gen
+Fetching latest versions of selected plugins...
+(node:22641) ExperimentalWarning: The Fetch API is an experimental feature. This feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+    Config file generated at codegen.yml
+
+      $ npm install
+
+    To install the plugins.
+
+      $ npm run gen
+
+    To run GraphQL Code Generator.
+```
 
 
 ## others

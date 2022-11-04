@@ -18,6 +18,7 @@ module.exports = {
         project: ["tsconfig.config.json"],
     },
     plugins: ["@typescript-eslint"],
+    ignorePatterns: ["**/__generated__/*ts"],
     rules: {
         "@typescript-eslint/require-await": "off",
     },
