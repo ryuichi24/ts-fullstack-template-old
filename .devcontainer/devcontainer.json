@@ -23,6 +23,7 @@
 	"redhat.vscode-yaml",
 	"kumar-harsh.graphql-for-vscode",
 	"dbaeumer.vscode-eslint",
-	"bradlc.vscode-tailwindcss"
+	"bradlc.vscode-tailwindcss",
+	"Prisma.prisma"
 ]
 }

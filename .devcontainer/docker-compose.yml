@@ -35,6 +35,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${DB_USER:-dbuser}
       MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD:-thisIsReallyStrongPassword123}
+      # mongodb://${DB_USER}:${DB_PASSWORD}@mongodb:27017
+      # mongodb://dbuser:thisIsReallyStrongPassword123@mongodb:27017/tsFullStackDb
     ports:
       - 27017:27017
     volumes:

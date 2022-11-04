@@ -2,6 +2,7 @@ import http from "http";
 import express from "express";
 import cors from "cors";
 import { ApolloServer } from "@apollo/server";
+import { PrismaClient } from "@prisma/client";
 // https://www.the-guild.dev/graphql/tools/docs/introduction
 import { mergeResolvers, mergeTypeDefs } from "@graphql-tools/merge";
 import { expressMiddleware } from "@apollo/server/express4";
@@ -15,9 +16,13 @@ import { rootTypeDefs } from "./modules/root/index.js";
 // https://www.memory-lovers.blog/entry/2022/05/31/110000
 // https://stackoverflow.com/a/64543163/13723015
 
+const prisma = new PrismaClient();
+
 async function main() {
     const PORT = process.env.PORT || 5555;
     const HOST = process.env.HOST || "localhost";
+
+    await prisma.$connect();
 
     const app = express();
 
@@ -48,7 +53,7 @@ async function main() {
     app.use(
         "/graphql",
         expressMiddleware(server, {
-            context: async ({ req, res }) => ({ req, res }),
+            context: async ({ req, res }) => ({ req, res, prisma }),
         })
     );
 
@@ -60,4 +65,8 @@ async function main() {
     console.log(`🚀 server is up and running at http://${HOST}:${PORT}/`);
 }
 
-main().catch((err) => console.error(err));
+main().catch(async (err) => {
+    console.error(err);
+    await prisma.$disconnect();
+    process.exit(1);
+});
