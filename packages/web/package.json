@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "lint": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx,json}\"",
     "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
-    "gen": "graphql-codegen --config codegen.yml"
+    "gen:gql": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
     "@apollo/client": "3.7.1",
