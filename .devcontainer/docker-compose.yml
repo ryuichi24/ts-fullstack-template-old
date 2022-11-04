@@ -13,61 +13,8 @@ services:
         TMP_PKG: ${TMP_PKG}
         NODE_VERSION: ${NODE_VERSION:-v18.7.0}
     tty: true
-    environment:
-      DB_USER: ${DB_USER:-dbuser}
-      DB_PASSWORD: ${DB_PASSWORD:-thisIsReallyStrongPassword123}
-      DB_HOST: ${DB_HOST:-postgres}
-      DB_PORT: ${DB_PORT:-5432}
-      DB_NAME: ${DB_NAME:-dev}
     volumes:
       - ../:/home/${USERNAME:-vscode}/workspace:cached
     working_dir: /workspace
-    networks:
-      - internal
-      - external
     ports:
       - 5555:5555
-
-  mongodb:
-    image: mongo:6.0
-    restart: unless-stopped
-    container_name: ${PROJECT_NAME:-default}-mongodb-container
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: ${DB_USER:-dbuser}
-      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD:-thisIsReallyStrongPassword123}
-      # mongodb://${DB_USER}:${DB_PASSWORD}@mongodb:27017
-      # mongodb://dbuser:thisIsReallyStrongPassword123@mongodb:27017/tsFullStackDb
-    ports:
-      - 27017:27017
-    volumes:
-      - ./.docker/mongodb:/data/db
-    networks:
-      - internal
-      - external
-
-  mongo-express:
-    image: mongo-express:1.0.0-alpha.4
-    container_name: ${PROJECT_NAME:-default}-mongo-express-container
-    restart: always
-    ports:
-      - 8081:8081
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: ${DB_USER:-dbuser}
-      ME_CONFIG_MONGODB_ADMINPASSWORD: ${DB_PASSWORD:-thisIsReallyStrongPassword123}
-      ME_CONFIG_MONGODB_SERVER: ${DB_HOST:-mongodb}
-      ME_CONFIG_MONGODB_PORT: ${DB_PORT:-27017}
-      ME_CONFIG_MONGODB_ENABLE_ADMIN: ${ME_CONFIG_MONGODB_ENABLE_ADMIN:-true}
-    depends_on:
-      - mongodb
-    networks:
-      - internal
-      - external
-
-# https://www.timedia.co.jp/tech/20220628-tech/
-networks:
-  internal:
-    driver: bridge
-    internal: true
-  external:
-    driver: bridge
-    internal: false
