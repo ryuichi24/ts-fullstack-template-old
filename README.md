@@ -274,11 +274,11 @@ https://pris.ly/d/getting-started
 
 ## add auth
 ```bash
-npm install -E jsonwebtoken argon2 nodemailer
+npm install -E jsonwebtoken argon2 nodemailer dotenv
 ```
 
 ```bash
-npm install -D -E @types/nodemailer dotenv
+npm install -D -E @types/nodemailer dotenv-cli
 ```
 
 ## others
