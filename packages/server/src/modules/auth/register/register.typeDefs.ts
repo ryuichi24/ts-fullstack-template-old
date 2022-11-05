@@ -1,8 +1,8 @@
 const typeDefs = `#graphql
 
 input RegisterInput {
-    email: String
-    password: String
+    email: String!
+    password: String!
 }
 
 type RegisterResponse {
@@ -11,7 +11,7 @@ type RegisterResponse {
 }
 
 type Mutation {
-    register(registerInput: RegisterInput): RegisterResponse
+    register(registerInput: RegisterInput!): RegisterResponse
 }
 `;
 

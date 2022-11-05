@@ -16,7 +16,7 @@ model User {
   email            String   @unique
   passwordHash     String
   isEmailConfirmed Boolean  @default(false)
-  emailConfirmToken       String   @unique
+  emailConfirmToken       String?   @unique
   // https://github.com/prisma/prisma/issues/12572
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt

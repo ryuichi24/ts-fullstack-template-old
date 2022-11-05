@@ -4,6 +4,7 @@ export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type RequireFields<T, K extends keyof T> = Omit<T, K> & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -11,6 +12,22 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+};
+
+export type CheckAuthResponse = {
+  __typename?: 'CheckAuthResponse';
+  errors?: Maybe<Array<Maybe<FieldError>>>;
+  user?: Maybe<User>;
+};
+
+export type ConfirmEmailInput = {
+  token: Scalars['String'];
+};
+
+export type ConfirmEmailResponse = {
+  __typename?: 'ConfirmEmailResponse';
+  errors?: Maybe<Array<Maybe<FieldError>>>;
+  user?: Maybe<User>;
 };
 
 export type FieldError = {
@@ -21,22 +38,29 @@ export type FieldError = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  confirmEmail?: Maybe<ConfirmEmailResponse>;
   register?: Maybe<RegisterResponse>;
 };
 
 
+export type MutationConfirmEmailArgs = {
+  confirmEmailInput: ConfirmEmailInput;
+};
+
+
 export type MutationRegisterArgs = {
-  registerInput?: InputMaybe<RegisterInput>;
+  registerInput: RegisterInput;
 };
 
 export type Query = {
   __typename?: 'Query';
+  checkAuth?: Maybe<CheckAuthResponse>;
   health?: Maybe<Scalars['Boolean']>;
 };
 
 export type RegisterInput = {
-  email?: InputMaybe<Scalars['String']>;
-  password?: InputMaybe<Scalars['String']>;
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
 
 export type RegisterResponse = {
@@ -124,6 +148,9 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  CheckAuthResponse: ResolverTypeWrapper<CheckAuthResponse>;
+  ConfirmEmailInput: ConfirmEmailInput;
+  ConfirmEmailResponse: ResolverTypeWrapper<ConfirmEmailResponse>;
   FieldError: ResolverTypeWrapper<FieldError>;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
@@ -136,6 +163,9 @@ export type ResolversTypes = {
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Boolean: Scalars['Boolean'];
+  CheckAuthResponse: CheckAuthResponse;
+  ConfirmEmailInput: ConfirmEmailInput;
+  ConfirmEmailResponse: ConfirmEmailResponse;
   FieldError: FieldError;
   Mutation: {};
   Query: {};
@@ -145,6 +175,18 @@ export type ResolversParentTypes = {
   User: User;
 };
 
+export type CheckAuthResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['CheckAuthResponse'] = ResolversParentTypes['CheckAuthResponse']> = {
+  errors?: Resolver<Maybe<Array<Maybe<ResolversTypes['FieldError']>>>, ParentType, ContextType>;
+  user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type ConfirmEmailResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['ConfirmEmailResponse'] = ResolversParentTypes['ConfirmEmailResponse']> = {
+  errors?: Resolver<Maybe<Array<Maybe<ResolversTypes['FieldError']>>>, ParentType, ContextType>;
+  user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type FieldErrorResolvers<ContextType = any, ParentType extends ResolversParentTypes['FieldError'] = ResolversParentTypes['FieldError']> = {
   field?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   message?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -152,10 +194,12 @@ export type FieldErrorResolvers<ContextType = any, ParentType extends ResolversP
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  register?: Resolver<Maybe<ResolversTypes['RegisterResponse']>, ParentType, ContextType, Partial<MutationRegisterArgs>>;
+  confirmEmail?: Resolver<Maybe<ResolversTypes['ConfirmEmailResponse']>, ParentType, ContextType, RequireFields<MutationConfirmEmailArgs, 'confirmEmailInput'>>;
+  register?: Resolver<Maybe<ResolversTypes['RegisterResponse']>, ParentType, ContextType, RequireFields<MutationRegisterArgs, 'registerInput'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  checkAuth?: Resolver<Maybe<ResolversTypes['CheckAuthResponse']>, ParentType, ContextType>;
   health?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
 };
 
@@ -175,6 +219,8 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
 };
 
 export type Resolvers<ContextType = any> = {
+  CheckAuthResponse?: CheckAuthResponseResolvers<ContextType>;
+  ConfirmEmailResponse?: ConfirmEmailResponseResolvers<ContextType>;
   FieldError?: FieldErrorResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;

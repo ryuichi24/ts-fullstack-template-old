@@ -9,6 +9,10 @@ export interface MyContext {
         never,
         Prisma.RejectOnNotFound | Prisma.RejectPerOperation | undefined
     >;
+    user?: {
+        id?: string;
+        roles?: string[];
+    };
 }
 
 type Resolver = (parent: any, args: any, context: MyContext, info: any) => any;
