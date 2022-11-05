@@ -2,45 +2,17 @@ import argon2 from "argon2";
 import jwt from "jsonwebtoken";
 import { appSettings } from "../../../config/index.js";
 import { MyContext } from "../../../types/graphql.js";
+import { createError } from "../../../utils/createError.js";
 import { sendEmail } from "../../../utils/sendEmail.js";
 import { Resolvers, RegisterResponse } from "../../../__generated__/graphql.js";
+import { validateRegisterInput } from "./validateRegisterInput.js";
 
 const resolvers: Resolvers<MyContext> = {
     Mutation: {
         register: async (_, { registerInput }, context, info): Promise<RegisterResponse> => {
-            const emailFormatRegex =
-                /^[-!#$%&'*+/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
-            if (!registerInput?.email) {
-                return {
-                    errors: [
-                        {
-                            field: "email",
-                            message: "no email provided",
-                        },
-                    ],
-                };
-            }
-
-            if (!emailFormatRegex.test(registerInput?.email)) {
-                return {
-                    errors: [
-                        {
-                            field: "email",
-                            message: "invalid email format",
-                        },
-                    ],
-                };
-            }
-
-            if (!registerInput.password) {
-                return {
-                    errors: [
-                        {
-                            field: "password",
-                            message: "no password provided",
-                        },
-                    ],
-                };
+            const errors = validateRegisterInput(registerInput);
+            if (errors) {
+                return { errors };
             }
 
             const existingUser = await context.prisma.user.findUnique({
@@ -52,10 +24,7 @@ const resolvers: Resolvers<MyContext> = {
             if (existingUser) {
                 return {
                     errors: [
-                        {
-                            field: "email",
-                            message: "the email is already taken",
-                        },
+                        createError({ message: "the email is already taken", field: "email" }),
                     ],
                 };
             }

@@ -1,4 +1,5 @@
 import { MyContext } from "../../../types/graphql.js";
+import { createError } from "../../../utils/createError.js";
 import { Resolvers } from "../../../__generated__/graphql.js";
 
 const resolvers: Resolvers<MyContext> = {
@@ -6,13 +7,10 @@ const resolvers: Resolvers<MyContext> = {
         checkAuth: async (_, args, context, info) => {
             if (!context.user) {
                 return {
-                    errors: [
-                        {
-                            message: "not authenticated",
-                        },
-                    ],
+                    errors: [createError({ message: "not authenticated" })],
                 };
             }
+
             const existingUser = await context.prisma.user.findUnique({
                 where: {
                     id: context.user.id,

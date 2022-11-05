@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import { appSettings } from "../../../config/index.js";
 import { MyContext } from "../../../types/graphql.js";
+import { createError } from "../../../utils/createError.js";
 import { ConfirmEmailResponse, Resolvers } from "../../../__generated__/graphql.js";
 
 const resolvers: Resolvers<MyContext> = {
@@ -19,11 +20,7 @@ const resolvers: Resolvers<MyContext> = {
 
             if (!existingUser) {
                 return {
-                    errors: [
-                        {
-                            message: "invalid token",
-                        },
-                    ],
+                    errors: [createError({ message: "invalid token" })],
                 };
             }
 
@@ -34,11 +31,7 @@ const resolvers: Resolvers<MyContext> = {
 
             if (!isValid) {
                 return {
-                    errors: [
-                        {
-                            message: "invalid token",
-                        },
-                    ],
+                    errors: [createError({ message: "invalid token" })],
                 };
             }
 
