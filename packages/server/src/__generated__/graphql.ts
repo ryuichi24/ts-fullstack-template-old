@@ -91,7 +91,6 @@ export type User = {
   createdAt?: Maybe<Scalars['String']>;
   email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
-  passwordHash?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['String']>;
 };
 
@@ -241,7 +240,6 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
   createdAt?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   email?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  passwordHash?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   updatedAt?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };

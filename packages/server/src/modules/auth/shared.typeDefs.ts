@@ -4,7 +4,6 @@ const typeDefs = `#graphql
     type User {
         id: String
         email: String
-        passwordHash: String
         createdAt: String
         updatedAt: String
     }

@@ -12,6 +12,9 @@ export interface MyContext {
     user?: {
         id?: string;
         roles?: string[];
+        email?: string;
+        createdAt?: string;
+        updatedAt?: string;
     };
 }
 
