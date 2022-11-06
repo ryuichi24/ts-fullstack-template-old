@@ -1,8 +1,8 @@
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
 import { appSettings } from "../../../config/index.js";
+import { BadRequestGQLError } from "../../../errors/BadRequestGQLError.js";
 import { MyContext } from "../../../types/graphql.js";
-import { createError } from "../../../utils/createError.js";
 import { Resolvers } from "../../../__generated__/graphql.js";
 
 const resolvers: Resolvers<MyContext> = {
@@ -15,9 +15,7 @@ const resolvers: Resolvers<MyContext> = {
             });
 
             if (!existingUser) {
-                return {
-                    errors: [createError({ message: "email or password is invalid" })],
-                };
+                throw new BadRequestGQLError("email or password is invalid");
             }
 
             const isValidPassword = await argon2.verify(
@@ -26,9 +24,7 @@ const resolvers: Resolvers<MyContext> = {
             );
 
             if (!isValidPassword) {
-                return {
-                    errors: [createError({ message: "email or password is invalid" })],
-                };
+                throw new BadRequestGQLError("email or password is invalid");
             }
 
             const accessToken = jwt.sign(

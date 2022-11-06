@@ -6,7 +6,6 @@ input RegisterInput {
 }
 
 type RegisterResponse {
-    errors: [FieldError]
     user: User
 }
 

@@ -7,11 +7,6 @@ const typeDefs = `#graphql
         createdAt: String
         updatedAt: String
     }
-
-    type FieldError {
-        field: String
-        message: String
-    }
 `;
 
 export default typeDefs;

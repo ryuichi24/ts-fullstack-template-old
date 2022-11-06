@@ -16,7 +16,6 @@ export type Scalars = {
 
 export type CheckAuthResponse = {
   __typename?: 'CheckAuthResponse';
-  errors?: Maybe<Array<Maybe<FieldError>>>;
   user?: Maybe<User>;
 };
 
@@ -26,14 +25,7 @@ export type ConfirmEmailInput = {
 
 export type ConfirmEmailResponse = {
   __typename?: 'ConfirmEmailResponse';
-  errors?: Maybe<Array<Maybe<FieldError>>>;
   user?: Maybe<User>;
-};
-
-export type FieldError = {
-  __typename?: 'FieldError';
-  field?: Maybe<Scalars['String']>;
-  message?: Maybe<Scalars['String']>;
 };
 
 export type LoginInput = {
@@ -43,7 +35,6 @@ export type LoginInput = {
 
 export type LoginResponse = {
   __typename?: 'LoginResponse';
-  errors?: Maybe<Array<Maybe<FieldError>>>;
   user?: Maybe<User>;
 };
 
@@ -82,7 +73,6 @@ export type RegisterInput = {
 
 export type RegisterResponse = {
   __typename?: 'RegisterResponse';
-  errors?: Maybe<Array<Maybe<FieldError>>>;
   user?: Maybe<User>;
 };
 
@@ -167,7 +157,6 @@ export type ResolversTypes = {
   CheckAuthResponse: ResolverTypeWrapper<CheckAuthResponse>;
   ConfirmEmailInput: ConfirmEmailInput;
   ConfirmEmailResponse: ResolverTypeWrapper<ConfirmEmailResponse>;
-  FieldError: ResolverTypeWrapper<FieldError>;
   LoginInput: LoginInput;
   LoginResponse: ResolverTypeWrapper<LoginResponse>;
   Mutation: ResolverTypeWrapper<{}>;
@@ -184,7 +173,6 @@ export type ResolversParentTypes = {
   CheckAuthResponse: CheckAuthResponse;
   ConfirmEmailInput: ConfirmEmailInput;
   ConfirmEmailResponse: ConfirmEmailResponse;
-  FieldError: FieldError;
   LoginInput: LoginInput;
   LoginResponse: LoginResponse;
   Mutation: {};
@@ -196,25 +184,16 @@ export type ResolversParentTypes = {
 };
 
 export type CheckAuthResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['CheckAuthResponse'] = ResolversParentTypes['CheckAuthResponse']> = {
-  errors?: Resolver<Maybe<Array<Maybe<ResolversTypes['FieldError']>>>, ParentType, ContextType>;
   user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type ConfirmEmailResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['ConfirmEmailResponse'] = ResolversParentTypes['ConfirmEmailResponse']> = {
-  errors?: Resolver<Maybe<Array<Maybe<ResolversTypes['FieldError']>>>, ParentType, ContextType>;
   user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type FieldErrorResolvers<ContextType = any, ParentType extends ResolversParentTypes['FieldError'] = ResolversParentTypes['FieldError']> = {
-  field?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  message?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
 export type LoginResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['LoginResponse'] = ResolversParentTypes['LoginResponse']> = {
-  errors?: Resolver<Maybe<Array<Maybe<ResolversTypes['FieldError']>>>, ParentType, ContextType>;
   user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -231,7 +210,6 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
 };
 
 export type RegisterResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['RegisterResponse'] = ResolversParentTypes['RegisterResponse']> = {
-  errors?: Resolver<Maybe<Array<Maybe<ResolversTypes['FieldError']>>>, ParentType, ContextType>;
   user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -247,7 +225,6 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
 export type Resolvers<ContextType = any> = {
   CheckAuthResponse?: CheckAuthResponseResolvers<ContextType>;
   ConfirmEmailResponse?: ConfirmEmailResponseResolvers<ContextType>;
-  FieldError?: FieldErrorResolvers<ContextType>;
   LoginResponse?: LoginResponseResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;

@@ -4,7 +4,6 @@ const typeDefs = `#graphql
     }
 
     type ConfirmEmailResponse {
-        errors: [FieldError]
         user: User
     }
 

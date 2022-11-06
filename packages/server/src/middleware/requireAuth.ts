@@ -1,4 +1,5 @@
-import { GraphQLError, GraphQLResolveInfo } from "graphql";
+import { GraphQLResolveInfo } from "graphql";
+import { UnauthorizedGQLError } from "../errors/UnauthorizedGQLError.js";
 import { MyContext } from "../types/graphql.js";
 import { ResolverFn } from "../__generated__/graphql.js";
 
@@ -11,13 +12,7 @@ export const requireAuth =
         info: GraphQLResolveInfo
     ): Promise<TResponse> => {
         if (!context.user?.id) {
-            // https://www.apollographql.com/docs/apollo-server/security/authentication/
-            throw new GraphQLError("User is not authenticated", {
-                extensions: {
-                    code: "UNAUTHENTICATED",
-                    http: { status: 401 },
-                },
-            });
+            throw new UnauthorizedGQLError("token is invalid");
         }
 
         const existingUser = await context.prisma.user.findUnique({
@@ -27,12 +22,7 @@ export const requireAuth =
         });
 
         if (!existingUser) {
-            throw new GraphQLError("User is not authenticated", {
-                extensions: {
-                    code: "UNAUTHENTICATED",
-                    http: { status: 401 },
-                },
-            });
+            throw new UnauthorizedGQLError("token is invalid");
         }
 
         context.user = {

@@ -1,6 +1,5 @@
 const typeDefs = `#graphql
     type CheckAuthResponse {
-        errors: [FieldError]
         user: User
     }
 

@@ -6,7 +6,6 @@ input LoginInput {
 }
 
 type LoginResponse {
-    errors: [FieldError]
     user: User
 }
 

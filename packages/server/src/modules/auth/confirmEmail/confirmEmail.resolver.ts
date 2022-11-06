@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import { appSettings } from "../../../config/index.js";
+import { BadRequestGQLError } from "../../../errors/BadRequestGQLError.js";
 import { MyContext } from "../../../types/graphql.js";
-import { createError } from "../../../utils/createError.js";
 import { ConfirmEmailResponse, Resolvers } from "../../../__generated__/graphql.js";
 
 const resolvers: Resolvers<MyContext> = {
@@ -19,9 +19,7 @@ const resolvers: Resolvers<MyContext> = {
             });
 
             if (!existingUser) {
-                return {
-                    errors: [createError({ message: "invalid token" })],
-                };
+                throw new BadRequestGQLError("invalid token");
             }
 
             const isValid = !!jwt.verify(
@@ -30,9 +28,7 @@ const resolvers: Resolvers<MyContext> = {
             );
 
             if (!isValid) {
-                return {
-                    errors: [createError({ message: "invalid token" })],
-                };
+                throw new BadRequestGQLError("invalid token");
             }
 
             await context.prisma.user.update({

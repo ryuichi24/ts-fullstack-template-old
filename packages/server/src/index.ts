@@ -14,6 +14,9 @@ import { rootTypeDefs } from "./modules/root/index.js";
 import { appSettings } from "./config/index.js";
 import { ApolloServerPluginLandingPageLocalDefault } from "@apollo/server/plugin/landingPage/default";
 import { cookieParser } from "./middleware/cookieParser.js";
+import { GraphQLError, GraphQLFormattedError } from "graphql";
+import { CustomGQLError } from "./errors/CustomGQLError.js";
+import { unwrapResolverError } from "@apollo/server/errors";
 // https://stackoverflow.com/questions/65873101/node-requires-file-extension-for-import-statement/65874173#65874173
 // https://stackoverflow.com/a/70682797/13723015
 // https://stackoverflow.com/questions/72213760/typescript-node-error-err-module-not-found-cannot-find-module/72215487#72215487
@@ -44,6 +47,18 @@ async function main() {
             // https://www.apollographql.com/docs/apollo-server/api/plugin/landing-pages/
             ApolloServerPluginLandingPageLocalDefault({ includeCookies: true }),
         ],
+        // https://www.apollographql.com/docs/apollo-server/data/errors/#custom-errors
+        formatError(formattedError: GraphQLFormattedError, error: unknown) {
+            const originalError = unwrapResolverError(error);
+            if (originalError instanceof CustomGQLError) {
+                return {
+                    ...formattedError,
+                    field: originalError.field,
+                };
+            }
+
+            return formattedError;
+        },
     });
 
     await server.start();

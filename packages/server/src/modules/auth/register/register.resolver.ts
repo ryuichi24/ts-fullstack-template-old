@@ -1,8 +1,8 @@
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
 import { appSettings } from "../../../config/index.js";
+import { BadRequestGQLError } from "../../../errors/BadRequestGQLError.js";
 import { MyContext } from "../../../types/graphql.js";
-import { createError } from "../../../utils/createError.js";
 import { sendEmail } from "../../../utils/sendEmail.js";
 import { Resolvers, RegisterResponse } from "../../../__generated__/graphql.js";
 import { validateRegisterInput } from "./validateRegisterInput.js";
@@ -10,10 +10,7 @@ import { validateRegisterInput } from "./validateRegisterInput.js";
 const resolvers: Resolvers<MyContext> = {
     Mutation: {
         register: async (_, { registerInput }, context, info): Promise<RegisterResponse> => {
-            const errors = validateRegisterInput(registerInput);
-            if (errors) {
-                return { errors };
-            }
+            validateRegisterInput(registerInput);
 
             const existingUser = await context.prisma.user.findUnique({
                 where: {
@@ -22,11 +19,7 @@ const resolvers: Resolvers<MyContext> = {
             });
 
             if (existingUser) {
-                return {
-                    errors: [
-                        createError({ message: "the email is already taken", field: "email" }),
-                    ],
-                };
+                throw new BadRequestGQLError("the email is already taken", "email");
             }
 
             const emailConfirmToken = jwt.sign({}, appSettings.AUTH.EMAIL_CONFIRM_TOKEN.SECRET, {
@@ -50,7 +43,6 @@ const resolvers: Resolvers<MyContext> = {
             });
 
             return {
-                errors: [],
                 user: {
                     id: newUser.id,
                     email: newUser.email,
