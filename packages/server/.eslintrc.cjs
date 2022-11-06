@@ -23,5 +23,6 @@ module.exports = {
     ignorePatterns: ["**/__generated__/*ts"],
     rules: {
         "@typescript-eslint/require-await": "off",
+        "@typescript-eslint/ban-types": "off"
     },
 };
