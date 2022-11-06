@@ -1,7 +1,6 @@
 import http from "http";
 import express from "express";
 import cors from "cors";
-import jwt from "jsonwebtoken";
 import { ApolloServer } from "@apollo/server";
 import { PrismaClient } from "@prisma/client";
 // https://www.the-guild.dev/graphql/tools/docs/introduction
@@ -14,7 +13,7 @@ import { rootTypeDefs } from "./modules/root/index.js";
 import { appSettings } from "./config/index.js";
 import { ApolloServerPluginLandingPageLocalDefault } from "@apollo/server/plugin/landingPage/default";
 import { cookieParser } from "./middleware/cookieParser.js";
-import { GraphQLError, GraphQLFormattedError } from "graphql";
+import { GraphQLFormattedError } from "graphql";
 import { CustomGQLError } from "./errors/CustomGQLError.js";
 import { unwrapResolverError } from "@apollo/server/errors";
 // https://stackoverflow.com/questions/65873101/node-requires-file-extension-for-import-statement/65874173#65874173
@@ -81,24 +80,7 @@ async function main() {
     app.use(
         "/graphql",
         expressMiddleware(server, {
-            context: async ({ req, res }) => {
-                const accessToken = req.parsedCookies?.at;
-                if (!accessToken) {
-                    return { req, res, prisma };
-                }
-
-                const jwtPayload = jwt.verify(
-                    accessToken,
-                    appSettings.AUTH.ACCESS_TOKEN.SECRET
-                ) as { [key: string]: string | string[] };
-
-                const user = {
-                    id: jwtPayload.id as string,
-                    roles: [],
-                };
-
-                return { req, res, prisma, user };
-            },
+            context: async ({ req, res }) => ({ req, res, prisma }),
         })
     );
 

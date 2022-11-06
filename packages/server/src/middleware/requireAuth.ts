@@ -1,4 +1,6 @@
 import { GraphQLResolveInfo } from "graphql";
+import jwt from "jsonwebtoken";
+import { appSettings } from "../config/index.js";
 import { UnauthorizedGQLError } from "../errors/UnauthorizedGQLError.js";
 import { MyContext } from "../types/graphql.js";
 import { ResolverFn } from "../__generated__/graphql.js";
@@ -11,13 +13,22 @@ export const requireAuth =
         context: MyContext,
         info: GraphQLResolveInfo
     ): Promise<TResponse> => {
-        if (!context.user?.id) {
+        const accessToken = context.req.parsedCookies?.at;
+        if (!accessToken) {
+            throw new UnauthorizedGQLError("token is invalid");
+        }
+
+        const jwtPayload = jwt.verify(accessToken, appSettings.AUTH.ACCESS_TOKEN.SECRET) as {
+            [key: string]: string;
+        };
+
+        if(!jwtPayload) {
             throw new UnauthorizedGQLError("token is invalid");
         }
 
         const existingUser = await context.prisma.user.findUnique({
             where: {
-                id: context.user.id,
+                id: jwtPayload.id,
             },
         });
 
@@ -26,7 +37,6 @@ export const requireAuth =
         }
 
         context.user = {
-            ...context.user,
             ...existingUser,
             createdAt: existingUser.createdAt.toString(),
             updatedAt: existingUser.updatedAt.toString(),
