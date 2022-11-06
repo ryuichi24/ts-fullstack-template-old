@@ -1,0 +1,10 @@
+query CheckAuth {
+    checkAuth {
+        user {
+            id
+            email
+            updatedAt
+            createdAt
+        }
+    }
+}

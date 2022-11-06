@@ -1,0 +1,10 @@
+mutation ConfirmEmail($confirmEmailInput: ConfirmEmailInput!) {
+    confirmEmail(confirmEmailInput: $confirmEmailInput) {
+        user {
+            id
+            email
+            createdAt
+            updatedAt
+        }
+    }
+}
