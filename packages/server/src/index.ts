@@ -62,10 +62,7 @@ async function main() {
     // global middle must be come before expressMiddleware
     app.use(
         cors({
-            origin: [
-                appSettings.SERVER.FRONTEND_HOST,
-                "chrome-extension://kjhjcgclphafojaeeickcokfbhlegecd",
-            ],
+            origin: [appSettings.SERVER.FRONTEND_HOST],
             credentials: true,
         })
     );
