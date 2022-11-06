@@ -17,17 +17,9 @@ export const buildSchema = async () => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     )).map(x => x.resolvers);
 
-    console.log(glob.sync(`${pathToModules}/**/*.resolver.?s`))
-
     const typeDefs = glob
         .sync(`${pathToModules}/**/*.graphql`)
         .map((typeDefsFile) => fs.readFileSync(typeDefsFile, { encoding: "utf8" }));
-
-        console.log(glob
-            .sync(`${pathToModules}/**/*.graphql`))
-
-    console.log({ typeDefs });
-    console.log({ resolvers });
 
     return makeExecutableSchema({
         resolvers: mergeResolvers([...resolvers]),

@@ -282,6 +282,7 @@ npm install -D -E @types/nodemailer dotenv-cli
 ```
 
 ## add auto import schema
+
 ```bash
 npm install -E glob -w server
 ```
@@ -289,6 +290,8 @@ npm install -E glob -w server
 ```bash
 npm install -E -D @types/glob -w server
 ```
+
+https://vccolombo.github.io/blog/tsc-how-to-copy-non-typescript-files-when-building/
 
 ```bash
 npm install -E -D copyfiles rimraf -w server
