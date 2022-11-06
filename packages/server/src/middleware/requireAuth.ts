@@ -11,6 +11,7 @@ export const requireAuth =
         info: GraphQLResolveInfo
     ): Promise<TResponse> => {
         if (!context.user?.id) {
+            // https://www.apollographql.com/docs/apollo-server/security/authentication/
             throw new GraphQLError("User is not authenticated", {
                 extensions: {
                     code: "UNAUTHENTICATED",
