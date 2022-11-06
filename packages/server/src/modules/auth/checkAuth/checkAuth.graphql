@@ -1,0 +1,7 @@
+type CheckAuthResponse {
+    user: User
+}
+
+type Query {
+    checkAuth: CheckAuthResponse
+}

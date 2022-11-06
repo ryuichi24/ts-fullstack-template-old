@@ -281,6 +281,19 @@ npm install -E jsonwebtoken argon2 nodemailer dotenv
 npm install -D -E @types/nodemailer dotenv-cli
 ```
 
+## add auto import schema
+```bash
+npm install -E glob -w server
+```
+
+```bash
+npm install -E -D @types/glob -w server
+```
+
+```bash
+npm install -E -D copyfiles rimraf -w server
+```
+
 ## others
 
 https://github.com/vitejs/vite/issues/383

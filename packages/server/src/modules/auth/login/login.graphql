@@ -1,5 +1,3 @@
-const typeDefs = `#graphql
-
 input LoginInput {
     email: String!
     password: String!
@@ -12,6 +10,3 @@ type LoginResponse {
 type Mutation {
     login(loginInput: LoginInput!): LoginResponse
 }
-`;
-
-export default typeDefs;

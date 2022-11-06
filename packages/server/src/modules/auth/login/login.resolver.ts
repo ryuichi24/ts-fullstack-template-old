@@ -5,7 +5,7 @@ import { BadRequestGQLError } from "../../../errors/BadRequestGQLError.js";
 import { MyContext } from "../../../types/graphql.js";
 import { Resolvers } from "../../../__generated__/graphql.js";
 
-const resolvers: Resolvers<MyContext> = {
+export const resolvers: Resolvers<MyContext> = {
     Mutation: {
         login: async (_, { loginInput }, context, info) => {
             const existingUser = await context.prisma.user.findUnique({
@@ -52,5 +52,3 @@ const resolvers: Resolvers<MyContext> = {
         },
     },
 };
-
-export default resolvers;

@@ -7,7 +7,7 @@ import { sendEmail } from "../../../utils/sendEmail.js";
 import { Resolvers, RegisterResponse } from "../../../__generated__/graphql.js";
 import { validateRegisterInput } from "./validateRegisterInput.js";
 
-const resolvers: Resolvers<MyContext> = {
+export const resolvers: Resolvers<MyContext> = {
     Mutation: {
         register: async (_, { registerInput }, context, info): Promise<RegisterResponse> => {
             validateRegisterInput(registerInput);
@@ -53,5 +53,3 @@ const resolvers: Resolvers<MyContext> = {
         },
     },
 };
-
-export default resolvers;

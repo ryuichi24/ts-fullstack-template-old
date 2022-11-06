@@ -4,7 +4,7 @@ import { BadRequestGQLError } from "../../../errors/BadRequestGQLError.js";
 import { MyContext } from "../../../types/graphql.js";
 import { ConfirmEmailResponse, Resolvers } from "../../../__generated__/graphql.js";
 
-const resolvers: Resolvers<MyContext> = {
+export const resolvers: Resolvers<MyContext> = {
     Mutation: {
         confirmEmail: async (
             _,
@@ -62,4 +62,3 @@ const resolvers: Resolvers<MyContext> = {
     },
 };
 
-export default resolvers;

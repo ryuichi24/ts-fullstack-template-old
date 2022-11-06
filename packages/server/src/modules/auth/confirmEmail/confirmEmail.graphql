@@ -1,0 +1,11 @@
+input ConfirmEmailInput {
+    token: String!
+}
+
+type ConfirmEmailResponse {
+    user: User
+}
+
+type Mutation {
+    confirmEmail(confirmEmailInput: ConfirmEmailInput!): ConfirmEmailResponse
+}
