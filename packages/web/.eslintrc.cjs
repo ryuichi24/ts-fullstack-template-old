@@ -27,6 +27,8 @@ module.exports = {
   ignorePatterns: ["**/generated/*ts"],
   rules: {
     "react/react-in-jsx-scope": "off",
+    "no-empty-pattern": "off",
+    "@typescript-eslint/ban-types": "off"
   },
   settings: {
     // https://blog.freks.jp/remove-eslint-react-plugin-warning/

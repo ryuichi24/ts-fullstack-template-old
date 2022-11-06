@@ -297,6 +297,11 @@ https://vccolombo.github.io/blog/tsc-how-to-copy-non-typescript-files-when-build
 npm install -E -D copyfiles rimraf -w server
 ```
 
+## add router
+```bash
+npm install -E react-router-dom -w web
+```
+
 ## others
 
 https://github.com/vitejs/vite/issues/383
