@@ -1,5 +1,6 @@
+import { Layout } from "@/components/Layout";
 import { Navigate, Outlet } from "react-router-dom";
-import { Layout } from "../components/Layout";
+
 
 export const Protected: React.FC<{}> = ({}) => {
     return (
