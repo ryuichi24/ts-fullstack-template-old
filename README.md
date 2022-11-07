@@ -306,3 +306,4 @@ npm install -E react-router-dom -w web
 
 https://github.com/vitejs/vite/issues/383
 https://sachee.medium.com/200-ok-error-handling-in-graphql-7ec869aec9bc
+https://shinesolutions.com/2021/06/30/automatically-handling-apollo-client-errors-in-your-react-ui/
