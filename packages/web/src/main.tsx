@@ -11,7 +11,6 @@ const httpLink = createHttpLink({
 });
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
-    console.log('from link')
     if (graphQLErrors) {
         console.log({ graphQLErrors });
     }
@@ -26,14 +25,13 @@ const client = new ApolloClient({
     cache: new InMemoryCache(),
     // errorLink must come first!
     link: from([errorLink, httpLink]),
+    credentials: "include",
 });
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-    <React.StrictMode>
-        <ApolloProvider client={client}>
-            <BrowserRouter>
-                <App />
-            </BrowserRouter>
-        </ApolloProvider>
-    </React.StrictMode>
+    <ApolloProvider client={client}>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </ApolloProvider>
 );

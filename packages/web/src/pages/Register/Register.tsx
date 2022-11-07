@@ -31,7 +31,10 @@ export const Register: React.FC<{}> = ({}) => {
                 console.log({ graphQLErrors: error.graphQLErrors });
                 // NOTE: tmp solution
                 const serverError = error.networkError as ServerError;
-                const fieldErrors = serverError.result.errors as FieldError[];
+                const fieldErrors = serverError.result?.errors as FieldError[];
+                if (!fieldErrors) {
+                    return;
+                }
                 setFieldErrors(fieldErrors);
             }
         }
@@ -83,3 +86,4 @@ export const Register: React.FC<{}> = ({}) => {
         </>
     );
 };
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk5NThiNjQ1LWMwOGUtNGZjYS1iY2Q0LTc0ZDJmZDA4ZmM1MyIsImlhdCI6MTY2NzgzMTIwNCwiZXhwIjoxNjY3ODMyMTA0fQ.gqne-a0RAmAGYmx4vQCe-MpEOwvpmLOzPdo3saMqORg
