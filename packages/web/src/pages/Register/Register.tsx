@@ -86,4 +86,3 @@ export const Register: React.FC<{}> = ({}) => {
         </>
     );
 };
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk5NThiNjQ1LWMwOGUtNGZjYS1iY2Q0LTc0ZDJmZDA4ZmM1MyIsImlhdCI6MTY2NzgzMTIwNCwiZXhwIjoxNjY3ODMyMTA0fQ.gqne-a0RAmAGYmx4vQCe-MpEOwvpmLOzPdo3saMqORg
