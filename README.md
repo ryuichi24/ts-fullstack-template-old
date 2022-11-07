@@ -305,3 +305,4 @@ npm install -E react-router-dom -w web
 ## others
 
 https://github.com/vitejs/vite/issues/383
+https://sachee.medium.com/200-ok-error-handling-in-graphql-7ec869aec9bc
