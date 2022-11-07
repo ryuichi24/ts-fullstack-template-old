@@ -1,14 +1,31 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import { ApolloClient, InMemoryCache, ApolloProvider, gql } from "@apollo/client";
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink, from } from "@apollo/client";
+import { onError } from "@apollo/client/link/error";
 import App from "./App";
 import "./index.css";
 
+const httpLink = createHttpLink({
+    uri: "http://localhost:5555/graphql",
+});
+
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+    console.log('from link')
+    if (graphQLErrors) {
+        console.log({ graphQLErrors });
+    }
+
+    if (networkError) {
+        console.log({ networkError });
+    }
+});
+
 // https://www.apollographql.com/docs/react/get-started
 const client = new ApolloClient({
-    uri: "http://localhost:5555/graphql",
     cache: new InMemoryCache(),
+    // errorLink must come first!
+    link: from([errorLink, httpLink]),
 });
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
