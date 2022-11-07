@@ -6,8 +6,10 @@ import { onError } from "@apollo/client/link/error";
 import App from "./App";
 import "./index.css";
 
+// if you create http link, you must set credentials here
 const httpLink = createHttpLink({
     uri: "http://localhost:5555/graphql",
+    credentials: "include",
 });
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
@@ -25,7 +27,6 @@ const client = new ApolloClient({
     cache: new InMemoryCache(),
     // errorLink must come first!
     link: from([errorLink, httpLink]),
-    credentials: "include",
 });
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
