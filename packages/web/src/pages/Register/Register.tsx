@@ -1,12 +1,16 @@
-import { InputField } from "@/components/Form";
+import React, { useState } from "react";
+import { Button } from "@/components/Elements";
+import { Form, InputField } from "@/components/Form";
+import { Wrapper } from "@/components/Wrapper";
 import { useRegisterMutation } from "@/__generated__/graphql";
 import { isApolloError, ServerError } from "@apollo/client";
-import React, { useState } from "react";
 
 type RegisterFormInputs = {
     email: string;
     password: string;
 };
+
+type RegisterFormInputsKeys = keyof RegisterFormInputs;
 
 type FieldError = {
     message: string;
@@ -14,32 +18,8 @@ type FieldError = {
 };
 
 export const Register: React.FC<{}> = ({}) => {
-    const [formInputs, setFormInputs] = useState<RegisterFormInputs>({ email: "", password: "" });
     const [registerDone, setRegisterDone] = useState(false);
-    const [fieldErrors, setFieldErrors] = useState<FieldError[]>([]);
-    const [register] = useRegisterMutation();
-
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
-    const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (event) => {
-        event.preventDefault();
-        console.log(formInputs);
-        try {
-            await register({ variables: { registerInput: { ...formInputs } } });
-            setRegisterDone(true);
-        } catch (error) {
-            if (error instanceof Error && isApolloError(error)) {
-                // https://github.com/apollographql/apollo-client/issues/9870
-                console.log({ graphQLErrors: error.graphQLErrors });
-                // NOTE: tmp solution
-                const serverError = error.networkError as ServerError;
-                const fieldErrors = serverError.result?.errors as FieldError[];
-                if (!fieldErrors) {
-                    return;
-                }
-                setFieldErrors(fieldErrors);
-            }
-        }
-    };
+    const [register, { loading }] = useRegisterMutation();
 
     if (registerDone) {
         return (
@@ -56,28 +36,68 @@ export const Register: React.FC<{}> = ({}) => {
     }
 
     return (
-        <>
-            <div>Register page</div>
-            <form onSubmit={handleSubmit}>
-                <InputField
-                    name="email"
-                    onChange={(event) =>
-                        setFormInputs((prev) => ({ ...prev, email: event.target.value }))
-                    }
-                />
-                <InputField
-                    name="password"
-                    onChange={(event) =>
-                        setFormInputs((prev) => ({ ...prev, password: event.target.value }))
-                    }
-                />
-                <button>Register</button>
-                {fieldErrors.map((err, index) => (
-                    <p className="text-red-400" key={index}>
-                        {err.message}
-                    </p>
-                ))}
-            </form>
-        </>
+        <Wrapper maxWidth={350} className="flex items-center h-full">
+            <div className="w-full">
+                <h2 className="text-gray-600 font-semibold">Sign up your account</h2>
+                <Form<RegisterFormInputs, RegisterFormInputsKeys>
+                    className="flex flex-col justify-center"
+                    onSubmit={async ({ values, setFieldErrorMessages }) => {
+                        try {
+                            await register({ variables: { registerInput: { ...values } } });
+                            setRegisterDone(true);
+                        } catch (error) {
+                            if (error instanceof Error && isApolloError(error)) {
+                                // NOTE: tmp solution
+                                const serverError = error.networkError as ServerError;
+                                const fieldErrors = serverError.result?.errors as FieldError[];
+                                if (!fieldErrors) {
+                                    return;
+                                }
+                                fieldErrors.forEach((errorItem) =>
+                                    setFieldErrorMessages((prev) => {
+                                        const currentField =
+                                            errorItem.field as RegisterFormInputsKeys;
+                                        prev[currentField] = errorItem.message;
+                                        return prev;
+                                    })
+                                );
+                            }
+                        }
+                    }}
+                >
+                    {({ setFormInputs, fieldErrorMessages }) => {
+                        return (
+                            <>
+                                <InputField
+                                    className="mt-2"
+                                    name="email"
+                                    onChange={(event) =>
+                                        setFormInputs((prev) => ({
+                                            ...prev,
+                                            email: event.target.value,
+                                        }))
+                                    }
+                                    errorMessage={fieldErrorMessages["email"]}
+                                />
+                                <InputField
+                                    className="mt-2"
+                                    name="password"
+                                    onChange={(event) =>
+                                        setFormInputs((prev) => ({
+                                            ...prev,
+                                            password: event.target.value,
+                                        }))
+                                    }
+                                    errorMessage={fieldErrorMessages["password"]}
+                                />
+                                <Button className="mt-4" isLoading={loading}>
+                                    Sign Up
+                                </Button>
+                            </>
+                        );
+                    }}
+                </Form>
+            </div>
+        </Wrapper>
     );
 };
