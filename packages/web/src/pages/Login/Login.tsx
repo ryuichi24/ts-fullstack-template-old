@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useLoginMutation } from "@/__generated__/graphql";
 import { isApolloError, ServerError } from "@apollo/client";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 
 type loginFormInputs = {
     email: string;
@@ -16,12 +18,16 @@ export const Login: React.FC<{}> = ({}) => {
     const [formInputs, setFormInputs] = useState<loginFormInputs>({ email: "", password: "" });
     const [fieldErrors, setFieldErrors] = useState<FieldError[]>([]);
     const [login] = useLoginMutation();
+    const navigate = useNavigate();
+    const { setUser } = useAuth();
 
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (event) => {
         event.preventDefault();
         try {
-            await login({ variables: { loginInput: { ...formInputs } } });
+            const response = await login({ variables: { loginInput: { ...formInputs } } });
+            setUser({ ...response.data?.login?.user });
+            navigate("/", { replace: true });
         } catch (error) {
             if (error instanceof Error && isApolloError(error)) {
                 console.log({ graphQLErrors: error.graphQLErrors });

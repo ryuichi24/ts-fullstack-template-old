@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink, from } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
+import { AuthProvider } from "@/contexts/authContext";
 import App from "./App";
 import "./index.css";
 
@@ -30,9 +31,11 @@ const client = new ApolloClient({
 });
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-    <ApolloProvider client={client}>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </ApolloProvider>
+    <AuthProvider>
+        <ApolloProvider client={client}>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </ApolloProvider>
+    </AuthProvider>
 );
