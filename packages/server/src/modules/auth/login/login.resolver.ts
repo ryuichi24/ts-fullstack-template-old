@@ -15,7 +15,7 @@ export const resolvers: Resolvers<MyContext> = {
             });
 
             if (!existingUser) {
-                throw new BadRequestGQLError("email or password is invalid");
+                throw new BadRequestGQLError("email or password is invalid", "password");
             }
 
             const isValidPassword = await argon2.verify(
@@ -24,7 +24,7 @@ export const resolvers: Resolvers<MyContext> = {
             );
 
             if (!isValidPassword) {
-                throw new BadRequestGQLError("email or password is invalid");
+                throw new BadRequestGQLError("email or password is invalid", "password");
             }
 
             const accessToken = jwt.sign(
