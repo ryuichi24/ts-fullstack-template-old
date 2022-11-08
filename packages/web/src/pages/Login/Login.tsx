@@ -40,14 +40,12 @@ export const Login: React.FC<{}> = ({}) => {
                             navigate("/", { replace: true });
                         } catch (error) {
                             if (error instanceof Error && isApolloError(error)) {
-                                console.log({ graphQLErrors: error.graphQLErrors });
                                 // NOTE: tmp solution
                                 const serverError = error.networkError as ServerError;
                                 const fieldErrors = serverError.result?.errors as FieldError[];
                                 if (!fieldErrors) {
                                     return;
                                 }
-                                console.log({fieldErrors})
                                 fieldErrors.forEach((errorItem) =>
                                     setFieldErrorMessages((prev) => {
                                         const currentField = errorItem.field as LoginFormInputsKeys;
