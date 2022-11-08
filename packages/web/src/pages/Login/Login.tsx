@@ -3,6 +3,9 @@ import { useLoginMutation } from "@/__generated__/graphql";
 import { isApolloError, ServerError } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
+import { InputField } from "@/components/Form";
+import { Wrapper } from "@/components/Wrapper";
+import { Button } from "@/components/Elements";
 
 type loginFormInputs = {
     email: string;
@@ -17,7 +20,7 @@ type FieldError = {
 export const Login: React.FC<{}> = ({}) => {
     const [formInputs, setFormInputs] = useState<loginFormInputs>({ email: "", password: "" });
     const [fieldErrors, setFieldErrors] = useState<FieldError[]>([]);
-    const [login] = useLoginMutation();
+    const [login, { loading }] = useLoginMutation();
     const navigate = useNavigate();
     const { setUser } = useAuth();
 
@@ -43,34 +46,32 @@ export const Login: React.FC<{}> = ({}) => {
         }
     };
     return (
-        <>
-            <div>Login page</div>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Email</label>
-                    <input
-                        type="email"
+        <Wrapper maxWidth={350} className="flex items-center h-full">
+            <div className="w-full">
+                <h2 className="text-gray-600 font-semibold">Login to your account</h2>
+                <form className="flex flex-col justify-center" onSubmit={handleSubmit}>
+                    <InputField
+                        className="mt-2"
+                        name="email"
                         onChange={(event) =>
                             setFormInputs((prev) => ({ ...prev, email: event.target.value }))
                         }
                     />
-                </div>
-                <div>
-                    <label>Password</label>
-                    <input
-                        type="password"
+                    <InputField
+                        className="mt-2"
+                        name="password"
                         onChange={(event) =>
                             setFormInputs((prev) => ({ ...prev, password: event.target.value }))
                         }
                     />
-                </div>
-                <button>login</button>
-                {fieldErrors.map((err, index) => (
-                    <p className="text-red-400" key={index}>
-                        {err.message}
-                    </p>
-                ))}
-            </form>
-        </>
+                    <Button className="mt-4" isLoading={loading}>login</Button>
+                    {fieldErrors.map((err, index) => (
+                        <p className="text-red-400" key={index}>
+                            {err.message}
+                        </p>
+                    ))}
+                </form>
+            </div>
+        </Wrapper>
     );
 };

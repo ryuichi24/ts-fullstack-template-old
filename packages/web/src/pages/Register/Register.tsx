@@ -1,3 +1,4 @@
+import { InputField } from "@/components/Form";
 import { useRegisterMutation } from "@/__generated__/graphql";
 import { isApolloError, ServerError } from "@apollo/client";
 import React, { useState } from "react";
@@ -58,24 +59,18 @@ export const Register: React.FC<{}> = ({}) => {
         <>
             <div>Register page</div>
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Email</label>
-                    <input
-                        type="email"
-                        onChange={(event) =>
-                            setFormInputs((prev) => ({ ...prev, email: event.target.value }))
-                        }
-                    />
-                </div>
-                <div>
-                    <label>Password</label>
-                    <input
-                        type="password"
-                        onChange={(event) =>
-                            setFormInputs((prev) => ({ ...prev, password: event.target.value }))
-                        }
-                    />
-                </div>
+                <InputField
+                    name="email"
+                    onChange={(event) =>
+                        setFormInputs((prev) => ({ ...prev, email: event.target.value }))
+                    }
+                />
+                <InputField
+                    name="password"
+                    onChange={(event) =>
+                        setFormInputs((prev) => ({ ...prev, password: event.target.value }))
+                    }
+                />
                 <button>Register</button>
                 {fieldErrors.map((err, index) => (
                     <p className="text-red-400" key={index}>
