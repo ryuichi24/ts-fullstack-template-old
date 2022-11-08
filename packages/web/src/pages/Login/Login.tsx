@@ -27,6 +27,7 @@ export const Login: React.FC<{}> = ({}) => {
         try {
             const response = await login({ variables: { loginInput: { ...formInputs } } });
             setUser({ ...response.data?.login?.user });
+            // replace = true means history stack gets clean and the user cannot get back
             navigate("/", { replace: true });
         } catch (error) {
             if (error instanceof Error && isApolloError(error)) {
