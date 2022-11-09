@@ -1,0 +1,5 @@
+scalar Void
+
+type Mutation {
+    logout: Void
+}

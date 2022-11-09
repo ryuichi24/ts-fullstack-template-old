@@ -1,4 +1,4 @@
-import { GraphQLResolveInfo } from 'graphql';
+import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -12,6 +12,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  Void: void;
 };
 
 export type CheckAuthResponse = {
@@ -42,6 +43,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   confirmEmail?: Maybe<ConfirmEmailResponse>;
   login?: Maybe<LoginResponse>;
+  logout?: Maybe<Scalars['Void']>;
   register?: Maybe<RegisterResponse>;
 };
 
@@ -165,6 +167,7 @@ export type ResolversTypes = {
   RegisterResponse: ResolverTypeWrapper<RegisterResponse>;
   String: ResolverTypeWrapper<Scalars['String']>;
   User: ResolverTypeWrapper<User>;
+  Void: ResolverTypeWrapper<Scalars['Void']>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -181,6 +184,7 @@ export type ResolversParentTypes = {
   RegisterResponse: RegisterResponse;
   String: Scalars['String'];
   User: User;
+  Void: Scalars['Void'];
 };
 
 export type CheckAuthResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['CheckAuthResponse'] = ResolversParentTypes['CheckAuthResponse']> = {
@@ -201,6 +205,7 @@ export type LoginResponseResolvers<ContextType = any, ParentType extends Resolve
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   confirmEmail?: Resolver<Maybe<ResolversTypes['ConfirmEmailResponse']>, ParentType, ContextType, RequireFields<MutationConfirmEmailArgs, 'confirmEmailInput'>>;
   login?: Resolver<Maybe<ResolversTypes['LoginResponse']>, ParentType, ContextType, RequireFields<MutationLoginArgs, 'loginInput'>>;
+  logout?: Resolver<Maybe<ResolversTypes['Void']>, ParentType, ContextType>;
   register?: Resolver<Maybe<ResolversTypes['RegisterResponse']>, ParentType, ContextType, RequireFields<MutationRegisterArgs, 'registerInput'>>;
 };
 
@@ -222,6 +227,10 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export interface VoidScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Void'], any> {
+  name: 'Void';
+}
+
 export type Resolvers<ContextType = any> = {
   CheckAuthResponse?: CheckAuthResponseResolvers<ContextType>;
   ConfirmEmailResponse?: ConfirmEmailResponseResolvers<ContextType>;
@@ -230,5 +239,6 @@ export type Resolvers<ContextType = any> = {
   Query?: QueryResolvers<ContextType>;
   RegisterResponse?: RegisterResponseResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
+  Void?: GraphQLScalarType;
 };
 

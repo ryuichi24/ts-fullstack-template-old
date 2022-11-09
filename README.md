@@ -302,6 +302,13 @@ npm install -E -D copyfiles rimraf -w server
 npm install -E react-router-dom -w web
 ```
 
+## add custom scalar
+```bash
+npm install -E  graphql-scalars -w server
+```
+
+https://the-guild.dev/graphql/scalars/docs
+
 ## others
 
 https://github.com/vitejs/vite/issues/383
