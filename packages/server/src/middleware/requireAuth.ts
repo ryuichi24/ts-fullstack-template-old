@@ -5,6 +5,7 @@ import { UnauthorizedGQLError } from "../errors/UnauthorizedGQLError.js";
 import { MyContext } from "../types/graphql.js";
 import { ResolverFn } from "../__generated__/graphql.js";
 
+// https://escape.tech/blog/9-graphql-security-best-practices/
 export const requireAuth =
     <TArgs, TResponse>(next: ResolverFn<TResponse, {}, MyContext, TArgs>) =>
     async (
