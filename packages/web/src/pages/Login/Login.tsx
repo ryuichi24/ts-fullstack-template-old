@@ -57,29 +57,19 @@ export const Login: React.FC<{}> = ({}) => {
                         }
                     }}
                 >
-                    {({ setFormInputs, fieldErrorMessages }) => {
+                    {({ handleChange, fieldErrorMessages }) => {
                         return (
                             <>
                                 <InputField
                                     className="mt-2"
                                     name="email"
-                                    onChange={(event) =>
-                                        setFormInputs((prev) => ({
-                                            ...prev,
-                                            email: event.target.value,
-                                        }))
-                                    }
+                                    onChange={handleChange}
                                     errorMessage={fieldErrorMessages["email"]}
                                 />
                                 <InputField
                                     className="mt-2"
                                     name="password"
-                                    onChange={(event) =>
-                                        setFormInputs((prev) => ({
-                                            ...prev,
-                                            password: event.target.value,
-                                        }))
-                                    }
+                                    onChange={handleChange}
                                     errorMessage={fieldErrorMessages["password"]}
                                 />
                                 <Button className="mt-4" isLoading={loading}>
