@@ -1,4 +1,5 @@
 import React from "react";
+import { Navbar } from "./Navbar";
 
 type LayoutProps = {
     children: React.ReactNode;
@@ -7,7 +8,7 @@ type LayoutProps = {
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <>
-            <div>layout</div>
+            <Navbar />
             <div>{children}</div>
         </>
     );
