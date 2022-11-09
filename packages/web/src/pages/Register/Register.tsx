@@ -73,12 +73,14 @@ export const Register: React.FC<{}> = ({}) => {
                                     name="email"
                                     onChange={handleChange}
                                     errorMessage={fieldErrorMessages["email"]}
+                                    required
                                 />
                                 <InputField
                                     className="mt-2"
                                     name="password"
                                     onChange={handleChange}
                                     errorMessage={fieldErrorMessages["password"]}
+                                    required
                                 />
                                 <Button className="mt-4" isLoading={loading}>
                                     Sign Up
