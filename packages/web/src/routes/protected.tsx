@@ -1,8 +1,7 @@
 import { Layout } from "@/components/Layout";
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, RouteObject } from "react-router-dom";
 
-
-export const Protected: React.FC<{}> = ({}) => {
+const Protected: React.FC<{}> = ({}) => {
     return (
         <>
             <Layout>
@@ -12,7 +11,7 @@ export const Protected: React.FC<{}> = ({}) => {
     );
 };
 
-export const protectedRoutes = [
+export const protectedRoutes: RouteObject[] = [
     {
         path: "/app",
         element: <Protected />,

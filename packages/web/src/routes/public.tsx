@@ -1,10 +1,9 @@
 import { ConfirmEmail } from "@/pages/ConfirmEmail";
 import { Login } from "@/pages/Login";
 import { Register } from "@/pages/Register";
-import { Navigate } from "react-router-dom";
+import { Navigate, RouteObject } from "react-router-dom";
 
-
-export const publicRoutes = [
+export const publicRoutes: RouteObject[] = [
     {
         path: "/login",
         element: <Login />,
@@ -17,5 +16,5 @@ export const publicRoutes = [
         path: "/confirm-email",
         element: <ConfirmEmail />,
     },
-    { path: "*", element: <Navigate to={`/login`} /> }
+    { path: "*", element: <Navigate to={`/login`} /> },
 ];
