@@ -4,17 +4,17 @@ import { useCheckAuthQuery } from "@/__generated__/graphql";
 
 export const useAuth = () => {
     const { user, setUser } = useAuthContext();
-    const { data, loading } = useCheckAuthQuery();
+    const { data, loading, error } = useCheckAuthQuery();
 
     useEffect(() => {
-        if (!loading && !data?.checkAuth?.user) {
+        if (!loading && error) {
             setUser(null);
         }
 
         if (!loading && data?.checkAuth?.user) {
             setUser({ ...data?.checkAuth.user });
         }
-    }, [loading, setUser, data?.checkAuth?.user]);
+    }, [loading, setUser, data?.checkAuth?.user, error]);
 
     return { user, setUser, loading };
 };

@@ -3,5 +3,8 @@ schema: "http://localhost:5555/graphql"
 documents: "src/graphql/**/*.graphql"
 generates:
   src/__generated__/graphql.tsx:
+    config:
+      scalars:
+        Void: "void"
     # preset: "client"
     plugins: ["typescript", "typescript-operations", "typescript-react-apollo"]
