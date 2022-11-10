@@ -1,7 +1,7 @@
 import React from "react";
 import { useLoginMutation } from "@/__generated__/graphql";
 import { isApolloError, ServerError } from "@apollo/client";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { Form, InputField } from "@/components/Form";
 import { Wrapper } from "@/components/Wrapper";
@@ -81,6 +81,15 @@ export const Login: React.FC<{}> = ({}) => {
                         );
                     }}
                 </Form>
+                <p className="mt-5 text-xs">
+                    Don&apos;t have an account yet?{" "}
+                    <Link
+                        className="border-b border-indigo-600 border-spacing-1 text-indigo-600 font-bold"
+                        to={"/register"}
+                    >
+                        Sign up for free
+                    </Link>
+                </p>
             </div>
         </Wrapper>
     );

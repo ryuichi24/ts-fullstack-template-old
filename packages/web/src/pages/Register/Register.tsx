@@ -4,6 +4,7 @@ import { Form, InputField } from "@/components/Form";
 import { Wrapper } from "@/components/Wrapper";
 import { useRegisterMutation } from "@/__generated__/graphql";
 import { isApolloError, ServerError } from "@apollo/client";
+import { Link } from "react-router-dom";
 
 type RegisterFormInputs = {
     email: string;
@@ -89,6 +90,15 @@ export const Register: React.FC<{}> = ({}) => {
                         );
                     }}
                 </Form>
+                <p className="mt-5 text-xs">
+                    Already have an account?{" "}
+                    <Link
+                        className="border-b border-indigo-600 border-spacing-1 text-indigo-600 font-bold"
+                        to={"/login"}
+                    >
+                        Sign in
+                    </Link>
+                </p>
             </div>
         </Wrapper>
     );
