@@ -20,7 +20,7 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
         },
     });
     const navigate = useNavigate();
-    const { setUser } = useAuth();
+    const { setUser, user } = useAuth();
 
     const handleLogoutBtnClick = async () => {
         await logout();
@@ -34,14 +34,16 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
                 <div className="font-semibold">Logo</div>
                 <div>
                     <ul className="flex items-center justify-between">
-                        <DropdownMenu
-                            clickTarget={<Avatar username={"john@email.com"} />}
-                            menuItems={[
-                                <button>item 1</button>,
-                                <button>item 2</button>,
-                                <button onClick={handleLogoutBtnClick}>logout</button>,
-                            ]}
-                        />
+                        {user ? (
+                            <DropdownMenu
+                                clickTarget={<Avatar username={user.email!} />}
+                                menuItems={[
+                                    <button>item 1</button>,
+                                    <button>item 2</button>,
+                                    <button onClick={handleLogoutBtnClick}>logout</button>,
+                                ]}
+                            />
+                        ) : null}
                     </ul>
                 </div>
             </div>
