@@ -38,9 +38,9 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
                             <DropdownMenu
                                 clickTarget={<Avatar username={user.email!} />}
                                 menuItems={[
-                                    <button>item 1</button>,
-                                    <button>item 2</button>,
-                                    <button onClick={handleLogoutBtnClick}>logout</button>,
+                                    <button className="w-full h-hull text-start">item 1</button>,
+                                    <button className="w-full h-hull text-start">item 2</button>,
+                                    <button className="w-full h-hull text-start" onClick={handleLogoutBtnClick}>logout</button>,
                                 ]}
                             />
                         ) : null}
