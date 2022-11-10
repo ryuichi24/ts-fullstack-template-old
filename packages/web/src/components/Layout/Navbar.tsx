@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
+/* eslint-disable react/jsx-key */
+import React from "react";
 import { useAuth } from "@/hooks/useAuth";
-import { CheckAuthDocument, useLogoutMutation } from "@/__generated__/graphql";
-import React, { useState } from "react";
+import { useLogoutMutation, CheckAuthDocument } from "@/__generated__/graphql";
 import { useNavigate } from "react-router-dom";
+import { DropdownMenu } from "../Elements/DropdownMenu";
 import { Avatar } from "../Avatar";
 
 type NavbarProps = {};
@@ -19,51 +21,27 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
     });
     const navigate = useNavigate();
     const { setUser } = useAuth();
-    // https://v1.tailwindcss.com/course/positioning-the-dropdown-area#app
-    const [isMenuActive, setIsMenuActive] = useState(false);
+
+    const handleLogoutBtnClick = async () => {
+        await logout();
+        setUser(null);
+        navigate("/login", { replace: true });
+    };
+
     return (
         <nav className="py-5 border border-b">
             <div className="container flex flex-wrap justify-between items-center mx-auto">
                 <div className="font-semibold">Logo</div>
                 <div>
                     <ul className="flex items-center justify-between">
-                        <li className="relative">
-                            <button className="relative z-10" onClick={() => setIsMenuActive(!isMenuActive)}>
-                                <Avatar username={"john@email.com"} />
-                            </button>
-                            {isMenuActive ? (
-                                <>
-                                    <button
-                                        className="fixed inset-0 h-full w-full bg-black opacity-20 cursor-default"
-                                        tabIndex={-1}
-                                        onClick={() => setIsMenuActive(!isMenuActive)}
-                                    ></button>
-                                    <div
-                                        id="dropdownNavbar"
-                                        className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-lg shadow-xl"
-                                    >
-                                        <ul>
-                                            <li className="cursor-pointer px-4 py-2 text-gray-800 hover:text-white hover:bg-indigo-500">
-                                                item 1
-                                            </li>
-                                            <li className="cursor-pointer px-4 py-2 text-gray-800 hover:text-white hover:bg-indigo-500">
-                                                item 2
-                                            </li>
-                                            <li
-                                                className="cursor-pointer px-4 py-2 text-red-400 hover:text-white hover:bg-indigo-500"
-                                                onClick={async () => {
-                                                    await logout();
-                                                    setUser(null);
-                                                    navigate("/login", { replace: true });
-                                                }}
-                                            >
-                                                logout
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </>
-                            ) : null}
-                        </li>
+                        <DropdownMenu
+                            clickTarget={<Avatar username={"john@email.com"} />}
+                            menuItems={[
+                                <button>item 1</button>,
+                                <button>item 2</button>,
+                                <button onClick={handleLogoutBtnClick}>logout</button>,
+                            ]}
+                        />
                     </ul>
                 </div>
             </div>
