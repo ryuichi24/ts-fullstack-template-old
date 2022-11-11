@@ -12,6 +12,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  DateTime: Date;
   Void: void;
 };
 
@@ -27,6 +28,16 @@ export type ConfirmEmailInput = {
 export type ConfirmEmailResponse = {
   __typename?: 'ConfirmEmailResponse';
   user?: Maybe<User>;
+};
+
+export type GetUsersInput = {
+  limit?: InputMaybe<Scalars['Int']>;
+};
+
+export type GetUsersResponse = {
+  __typename?: 'GetUsersResponse';
+  hasMore?: Maybe<Scalars['Boolean']>;
+  users?: Maybe<Array<Maybe<User>>>;
 };
 
 export type LoginInput = {
@@ -65,7 +76,13 @@ export type MutationRegisterArgs = {
 export type Query = {
   __typename?: 'Query';
   checkAuth?: Maybe<CheckAuthResponse>;
+  getUsers?: Maybe<GetUsersResponse>;
   health?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type QueryGetUsersArgs = {
+  getUsersInput: GetUsersInput;
 };
 
 export type RegisterInput = {
@@ -80,10 +97,10 @@ export type RegisterResponse = {
 
 export type User = {
   __typename?: 'User';
-  createdAt?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
   email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
 
@@ -159,6 +176,10 @@ export type ResolversTypes = {
   CheckAuthResponse: ResolverTypeWrapper<CheckAuthResponse>;
   ConfirmEmailInput: ConfirmEmailInput;
   ConfirmEmailResponse: ResolverTypeWrapper<ConfirmEmailResponse>;
+  DateTime: ResolverTypeWrapper<Scalars['DateTime']>;
+  GetUsersInput: GetUsersInput;
+  GetUsersResponse: ResolverTypeWrapper<GetUsersResponse>;
+  Int: ResolverTypeWrapper<Scalars['Int']>;
   LoginInput: LoginInput;
   LoginResponse: ResolverTypeWrapper<LoginResponse>;
   Mutation: ResolverTypeWrapper<{}>;
@@ -176,6 +197,10 @@ export type ResolversParentTypes = {
   CheckAuthResponse: CheckAuthResponse;
   ConfirmEmailInput: ConfirmEmailInput;
   ConfirmEmailResponse: ConfirmEmailResponse;
+  DateTime: Scalars['DateTime'];
+  GetUsersInput: GetUsersInput;
+  GetUsersResponse: GetUsersResponse;
+  Int: Scalars['Int'];
   LoginInput: LoginInput;
   LoginResponse: LoginResponse;
   Mutation: {};
@@ -197,6 +222,16 @@ export type ConfirmEmailResponseResolvers<ContextType = any, ParentType extends 
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['DateTime'], any> {
+  name: 'DateTime';
+}
+
+export type GetUsersResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['GetUsersResponse'] = ResolversParentTypes['GetUsersResponse']> = {
+  hasMore?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  users?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type LoginResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['LoginResponse'] = ResolversParentTypes['LoginResponse']> = {
   user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -211,6 +246,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   checkAuth?: Resolver<Maybe<ResolversTypes['CheckAuthResponse']>, ParentType, ContextType>;
+  getUsers?: Resolver<Maybe<ResolversTypes['GetUsersResponse']>, ParentType, ContextType, RequireFields<QueryGetUsersArgs, 'getUsersInput'>>;
   health?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
 };
 
@@ -220,10 +256,10 @@ export type RegisterResponseResolvers<ContextType = any, ParentType extends Reso
 };
 
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
-  createdAt?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  createdAt?: Resolver<Maybe<ResolversTypes['DateTime']>, ParentType, ContextType>;
   email?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  updatedAt?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  updatedAt?: Resolver<Maybe<ResolversTypes['DateTime']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -234,6 +270,8 @@ export interface VoidScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes
 export type Resolvers<ContextType = any> = {
   CheckAuthResponse?: CheckAuthResponseResolvers<ContextType>;
   ConfirmEmailResponse?: ConfirmEmailResponseResolvers<ContextType>;
+  DateTime?: GraphQLScalarType;
+  GetUsersResponse?: GetUsersResponseResolvers<ContextType>;
   LoginResponse?: LoginResponseResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;

@@ -1,0 +1,12 @@
+input GetUsersInput {
+    limit: Int
+}
+
+type GetUsersResponse {
+    users: [User]
+    hasMore: Boolean
+}
+
+type Query {
+    getUsers(getUsersInput: GetUsersInput!): GetUsersResponse
+}
