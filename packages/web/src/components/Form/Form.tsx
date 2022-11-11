@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 
 // https://qiita.com/yuma84/items/72f72a2fff987d3de28a
-type FieldErrorMessages<TFormInputs, TFormInputKey extends keyof TFormInputs> = {
-    [key in TFormInputKey]: string;
-};
+
+type FieldErrorMessages<TFormInputs, TFormInputKey extends keyof TFormInputs> = Record<
+    TFormInputKey,
+    string
+>;
 
 type FormProps<TFormInputs, TFormInputKey extends keyof TFormInputs> = {
     onSubmit: (args: {
