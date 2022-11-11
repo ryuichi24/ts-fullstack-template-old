@@ -1,0 +1,11 @@
+input DeleteUserInput {
+    userId: String!
+}
+
+type DeleteUserResponse {
+    user: User!
+}
+
+type Mutation {
+    deleteUser(deleteUserInput: DeleteUserInput!): DeleteUserResponse!
+}

@@ -40,6 +40,15 @@ export type CreateUserResponse = {
   user?: Maybe<User>;
 };
 
+export type DeleteUserInput = {
+  userId: Scalars['String'];
+};
+
+export type DeleteUserResponse = {
+  __typename?: 'DeleteUserResponse';
+  user: User;
+};
+
 export type GetUsersInput = {
   limit?: InputMaybe<Scalars['Int']>;
 };
@@ -64,6 +73,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   confirmEmail: ConfirmEmailResponse;
   createUser: CreateUserResponse;
+  deleteUser: DeleteUserResponse;
   login: LoginResponse;
   logout?: Maybe<Scalars['Void']>;
   register: RegisterResponse;
@@ -77,6 +87,11 @@ export type MutationConfirmEmailArgs = {
 
 export type MutationCreateUserArgs = {
   createUserInput: CreateUserInput;
+};
+
+
+export type MutationDeleteUserArgs = {
+  deleteUserInput: DeleteUserInput;
 };
 
 
@@ -195,6 +210,8 @@ export type ResolversTypes = {
   CreateUserInput: CreateUserInput;
   CreateUserResponse: ResolverTypeWrapper<CreateUserResponse>;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']>;
+  DeleteUserInput: DeleteUserInput;
+  DeleteUserResponse: ResolverTypeWrapper<DeleteUserResponse>;
   GetUsersInput: GetUsersInput;
   GetUsersResponse: ResolverTypeWrapper<GetUsersResponse>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
@@ -218,6 +235,8 @@ export type ResolversParentTypes = {
   CreateUserInput: CreateUserInput;
   CreateUserResponse: CreateUserResponse;
   DateTime: Scalars['DateTime'];
+  DeleteUserInput: DeleteUserInput;
+  DeleteUserResponse: DeleteUserResponse;
   GetUsersInput: GetUsersInput;
   GetUsersResponse: GetUsersResponse;
   Int: Scalars['Int'];
@@ -251,6 +270,11 @@ export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversT
   name: 'DateTime';
 }
 
+export type DeleteUserResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['DeleteUserResponse'] = ResolversParentTypes['DeleteUserResponse']> = {
+  user?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type GetUsersResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['GetUsersResponse'] = ResolversParentTypes['GetUsersResponse']> = {
   hasMore?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   users?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType>;
@@ -265,6 +289,7 @@ export type LoginResponseResolvers<ContextType = any, ParentType extends Resolve
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   confirmEmail?: Resolver<ResolversTypes['ConfirmEmailResponse'], ParentType, ContextType, RequireFields<MutationConfirmEmailArgs, 'confirmEmailInput'>>;
   createUser?: Resolver<ResolversTypes['CreateUserResponse'], ParentType, ContextType, RequireFields<MutationCreateUserArgs, 'createUserInput'>>;
+  deleteUser?: Resolver<ResolversTypes['DeleteUserResponse'], ParentType, ContextType, RequireFields<MutationDeleteUserArgs, 'deleteUserInput'>>;
   login?: Resolver<ResolversTypes['LoginResponse'], ParentType, ContextType, RequireFields<MutationLoginArgs, 'loginInput'>>;
   logout?: Resolver<Maybe<ResolversTypes['Void']>, ParentType, ContextType>;
   register?: Resolver<ResolversTypes['RegisterResponse'], ParentType, ContextType, RequireFields<MutationRegisterArgs, 'registerInput'>>;
@@ -298,6 +323,7 @@ export type Resolvers<ContextType = any> = {
   ConfirmEmailResponse?: ConfirmEmailResponseResolvers<ContextType>;
   CreateUserResponse?: CreateUserResponseResolvers<ContextType>;
   DateTime?: GraphQLScalarType;
+  DeleteUserResponse?: DeleteUserResponseResolvers<ContextType>;
   GetUsersResponse?: GetUsersResponseResolvers<ContextType>;
   LoginResponse?: LoginResponseResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
