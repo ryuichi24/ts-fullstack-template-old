@@ -1,0 +1,17 @@
+input UpdateUserDto {
+    email: String
+    password: String
+}
+
+input UpdateUserInput {
+    userId: String!
+    user: UpdateUserDto!
+}
+
+type UpdateUserResponse {
+    user: User!
+}
+
+type Mutation {
+    updateUser(updateUserInput: UpdateUserInput!): UpdateUserResponse!
+}

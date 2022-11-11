@@ -77,6 +77,7 @@ export type Mutation = {
   login: LoginResponse;
   logout?: Maybe<Scalars['Void']>;
   register: RegisterResponse;
+  updateUser: UpdateUserResponse;
 };
 
 
@@ -104,6 +105,11 @@ export type MutationRegisterArgs = {
   registerInput: RegisterInput;
 };
 
+
+export type MutationUpdateUserArgs = {
+  updateUserInput: UpdateUserInput;
+};
+
 export type Query = {
   __typename?: 'Query';
   checkAuth: CheckAuthResponse;
@@ -124,6 +130,21 @@ export type RegisterInput = {
 export type RegisterResponse = {
   __typename?: 'RegisterResponse';
   user?: Maybe<User>;
+};
+
+export type UpdateUserDto = {
+  email?: InputMaybe<Scalars['String']>;
+  password?: InputMaybe<Scalars['String']>;
+};
+
+export type UpdateUserInput = {
+  user: UpdateUserDto;
+  userId: Scalars['String'];
+};
+
+export type UpdateUserResponse = {
+  __typename?: 'UpdateUserResponse';
+  user: User;
 };
 
 export type User = {
@@ -222,6 +243,9 @@ export type ResolversTypes = {
   RegisterInput: RegisterInput;
   RegisterResponse: ResolverTypeWrapper<RegisterResponse>;
   String: ResolverTypeWrapper<Scalars['String']>;
+  UpdateUserDto: UpdateUserDto;
+  UpdateUserInput: UpdateUserInput;
+  UpdateUserResponse: ResolverTypeWrapper<UpdateUserResponse>;
   User: ResolverTypeWrapper<User>;
   Void: ResolverTypeWrapper<Scalars['Void']>;
 };
@@ -247,6 +271,9 @@ export type ResolversParentTypes = {
   RegisterInput: RegisterInput;
   RegisterResponse: RegisterResponse;
   String: Scalars['String'];
+  UpdateUserDto: UpdateUserDto;
+  UpdateUserInput: UpdateUserInput;
+  UpdateUserResponse: UpdateUserResponse;
   User: User;
   Void: Scalars['Void'];
 };
@@ -293,6 +320,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   login?: Resolver<ResolversTypes['LoginResponse'], ParentType, ContextType, RequireFields<MutationLoginArgs, 'loginInput'>>;
   logout?: Resolver<Maybe<ResolversTypes['Void']>, ParentType, ContextType>;
   register?: Resolver<ResolversTypes['RegisterResponse'], ParentType, ContextType, RequireFields<MutationRegisterArgs, 'registerInput'>>;
+  updateUser?: Resolver<ResolversTypes['UpdateUserResponse'], ParentType, ContextType, RequireFields<MutationUpdateUserArgs, 'updateUserInput'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
@@ -303,6 +331,11 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
 
 export type RegisterResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['RegisterResponse'] = ResolversParentTypes['RegisterResponse']> = {
   user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type UpdateUserResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['UpdateUserResponse'] = ResolversParentTypes['UpdateUserResponse']> = {
+  user?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -329,6 +362,7 @@ export type Resolvers<ContextType = any> = {
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   RegisterResponse?: RegisterResponseResolvers<ContextType>;
+  UpdateUserResponse?: UpdateUserResponseResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
   Void?: GraphQLScalarType;
 };
