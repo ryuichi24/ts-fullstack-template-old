@@ -52,10 +52,10 @@ export type LoginResponse = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  confirmEmail?: Maybe<ConfirmEmailResponse>;
-  login?: Maybe<LoginResponse>;
+  confirmEmail: ConfirmEmailResponse;
+  login: LoginResponse;
   logout?: Maybe<Scalars['Void']>;
-  register?: Maybe<RegisterResponse>;
+  register: RegisterResponse;
 };
 
 
@@ -75,9 +75,9 @@ export type MutationRegisterArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  checkAuth?: Maybe<CheckAuthResponse>;
+  checkAuth: CheckAuthResponse;
   getUsers?: Maybe<GetUsersResponse>;
-  health?: Maybe<Scalars['Boolean']>;
+  health: Scalars['Boolean'];
 };
 
 
@@ -238,16 +238,16 @@ export type LoginResponseResolvers<ContextType = any, ParentType extends Resolve
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  confirmEmail?: Resolver<Maybe<ResolversTypes['ConfirmEmailResponse']>, ParentType, ContextType, RequireFields<MutationConfirmEmailArgs, 'confirmEmailInput'>>;
-  login?: Resolver<Maybe<ResolversTypes['LoginResponse']>, ParentType, ContextType, RequireFields<MutationLoginArgs, 'loginInput'>>;
+  confirmEmail?: Resolver<ResolversTypes['ConfirmEmailResponse'], ParentType, ContextType, RequireFields<MutationConfirmEmailArgs, 'confirmEmailInput'>>;
+  login?: Resolver<ResolversTypes['LoginResponse'], ParentType, ContextType, RequireFields<MutationLoginArgs, 'loginInput'>>;
   logout?: Resolver<Maybe<ResolversTypes['Void']>, ParentType, ContextType>;
-  register?: Resolver<Maybe<ResolversTypes['RegisterResponse']>, ParentType, ContextType, RequireFields<MutationRegisterArgs, 'registerInput'>>;
+  register?: Resolver<ResolversTypes['RegisterResponse'], ParentType, ContextType, RequireFields<MutationRegisterArgs, 'registerInput'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  checkAuth?: Resolver<Maybe<ResolversTypes['CheckAuthResponse']>, ParentType, ContextType>;
+  checkAuth?: Resolver<ResolversTypes['CheckAuthResponse'], ParentType, ContextType>;
   getUsers?: Resolver<Maybe<ResolversTypes['GetUsersResponse']>, ParentType, ContextType, RequireFields<QueryGetUsersArgs, 'getUsersInput'>>;
-  health?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  health?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
 };
 
 export type RegisterResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['RegisterResponse'] = ResolversParentTypes['RegisterResponse']> = {

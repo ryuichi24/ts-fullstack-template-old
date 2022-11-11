@@ -3,5 +3,5 @@ type CheckAuthResponse {
 }
 
 type Query {
-    checkAuth: CheckAuthResponse
+    checkAuth: CheckAuthResponse!
 }

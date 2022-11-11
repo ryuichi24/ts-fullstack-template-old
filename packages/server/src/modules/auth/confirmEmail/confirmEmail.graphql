@@ -7,5 +7,5 @@ type ConfirmEmailResponse {
 }
 
 type Mutation {
-    confirmEmail(confirmEmailInput: ConfirmEmailInput!): ConfirmEmailResponse
+    confirmEmail(confirmEmailInput: ConfirmEmailInput!): ConfirmEmailResponse!
 }

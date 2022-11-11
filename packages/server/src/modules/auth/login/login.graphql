@@ -8,5 +8,5 @@ type LoginResponse {
 }
 
 type Mutation {
-    login(loginInput: LoginInput!): LoginResponse
+    login(loginInput: LoginInput!): LoginResponse!
 }

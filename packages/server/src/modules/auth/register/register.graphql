@@ -8,5 +8,5 @@ type RegisterResponse {
 }
 
 type Mutation {
-    register(registerInput: RegisterInput!): RegisterResponse
+    register(registerInput: RegisterInput!): RegisterResponse!
 }
