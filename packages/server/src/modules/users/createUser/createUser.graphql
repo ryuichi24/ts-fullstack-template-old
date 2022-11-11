@@ -1,0 +1,12 @@
+input CreateUserInput {
+    email: String!
+    password: String!
+}
+
+type CreateUserResponse {
+    user: User
+}
+
+type Mutation {
+    createUser(createUserInput: CreateUserInput!): CreateUserResponse!
+}
