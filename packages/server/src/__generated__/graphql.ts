@@ -92,7 +92,7 @@ export type MutationRegisterArgs = {
 export type Query = {
   __typename?: 'Query';
   checkAuth: CheckAuthResponse;
-  getUsers?: Maybe<GetUsersResponse>;
+  getUsers: GetUsersResponse;
   health: Scalars['Boolean'];
 };
 
@@ -272,7 +272,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   checkAuth?: Resolver<ResolversTypes['CheckAuthResponse'], ParentType, ContextType>;
-  getUsers?: Resolver<Maybe<ResolversTypes['GetUsersResponse']>, ParentType, ContextType, RequireFields<QueryGetUsersArgs, 'getUsersInput'>>;
+  getUsers?: Resolver<ResolversTypes['GetUsersResponse'], ParentType, ContextType, RequireFields<QueryGetUsersArgs, 'getUsersInput'>>;
   health?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
 };
 

@@ -8,5 +8,5 @@ type GetUsersResponse {
 }
 
 type Query {
-    getUsers(getUsersInput: GetUsersInput!): GetUsersResponse
+    getUsers(getUsersInput: GetUsersInput!): GetUsersResponse!
 }
