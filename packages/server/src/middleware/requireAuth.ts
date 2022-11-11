@@ -23,7 +23,7 @@ export const requireAuth =
             [key: string]: string;
         };
 
-        if(!jwtPayload) {
+        if (!jwtPayload) {
             throw new UnauthorizedGQLError("token is invalid");
         }
 
@@ -39,8 +39,8 @@ export const requireAuth =
 
         context.user = {
             ...existingUser,
-            createdAt: existingUser.createdAt.toString(),
-            updatedAt: existingUser.updatedAt.toString(),
+            createdAt: existingUser.createdAt,
+            updatedAt: existingUser.updatedAt,
         };
 
         return next(parent, args, context, info);
