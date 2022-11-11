@@ -21,5 +21,5 @@ export const ConfirmEmail: React.FC<ConfirmEmailProps> = ({}) => {
     useEffect(() => {
         handleEmailConfirmToken().catch((err) => console.log(err));
     }, [handleEmailConfirmToken]);
-    return <>ConfirmEmail</>;
+    return <></>;
 };

@@ -3,7 +3,7 @@
 import React from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { useLogoutMutation, CheckAuthDocument } from "@/__generated__/graphql";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { DropdownMenu } from "../Elements/DropdownMenu";
 import { Avatar } from "../Avatar";
 
@@ -31,19 +31,41 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
     return (
         <nav className="py-5 border border-b">
             <div className="container flex flex-wrap justify-between items-center mx-auto">
-                <div className="font-semibold">Logo</div>
+                <div className="font-semibold">
+                    <Link to={"/"}>Logo</Link>
+                </div>
                 <div>
                     <ul className="flex items-center justify-between">
                         {user ? (
-                            <DropdownMenu
-                                clickTarget={<Avatar username={user.email!} />}
-                                menuItems={[
-                                    <button className="w-full h-hull text-start">item 1</button>,
-                                    <button className="w-full h-hull text-start">item 2</button>,
-                                    <button className="w-full h-hull text-start" onClick={handleLogoutBtnClick}>logout</button>,
-                                ]}
-                            />
-                        ) : null}
+                            <>
+                                <li className="mr-6">
+                                    <Link to={"/home"}>Home</Link>
+                                </li>
+                                <DropdownMenu
+                                    clickTarget={<Avatar username={user.email!} />}
+                                    menuItems={[
+                                        <button className="w-full h-hull text-start">
+                                            item 1
+                                        </button>,
+                                        <button className="w-full h-hull text-start">
+                                            <Link to={"/profile"}>Profile</Link>
+                                        </button>,
+                                        <button
+                                            className="w-full h-hull text-start"
+                                            onClick={handleLogoutBtnClick}
+                                        >
+                                            logout
+                                        </button>,
+                                    ]}
+                                />
+                            </>
+                        ) : (
+                            <>
+                                <li>
+                                    <Link to={"/login"}>Sign In</Link>
+                                </li>
+                            </>
+                        )}
                     </ul>
                 </div>
             </div>

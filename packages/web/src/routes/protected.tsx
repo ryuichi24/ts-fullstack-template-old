@@ -13,12 +13,14 @@ const Protected: React.FC<{}> = ({}) => {
 
 export const protectedRoutes: RouteObject[] = [
     {
-        path: "/app",
         element: <Protected />,
         children: [
-            { path: "/app/", element: <div>Protected</div> },
-            { path: "/app/profile", element: <div>Profile</div> },
+            { path: "/profile", element: <div>Profile</div> },
+            { path: "/home", element: <div>Home</div> },
+            // TODO: make it dynamic
+            { path: "/login", element: <Navigate to={"/home"} /> },
+            { path: "/register", element: <Navigate to={"/home"} /> },
+            { path: "/confirm-email", element: <Navigate to={"/home"} /> },
         ],
     },
-    { path: "*", element: <Navigate to={`/app`} /> },
 ];

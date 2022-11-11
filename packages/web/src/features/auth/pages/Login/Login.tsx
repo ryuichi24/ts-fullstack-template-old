@@ -1,51 +1,43 @@
-import React, { useState } from "react";
-import { Button } from "@/components/Elements";
+import React from "react";
+import { useLoginMutation } from "@/__generated__/graphql";
+import { isApolloError, ServerError } from "@apollo/client";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 import { Form, InputField } from "@/components/Form";
 import { Wrapper } from "@/components/Wrapper";
-import { useRegisterMutation } from "@/__generated__/graphql";
-import { isApolloError, ServerError } from "@apollo/client";
-import { Link } from "react-router-dom";
+import { Button } from "@/components/Elements";
 
-type RegisterFormInputs = {
+type LoginFormInputs = {
     email: string;
     password: string;
 };
 
-type RegisterFormInputsKeys = keyof RegisterFormInputs;
+type LoginFormInputsKeys = keyof LoginFormInputs;
 
 type FieldError = {
     message: string;
     field: string;
 };
 
-export const Register: React.FC<{}> = ({}) => {
-    const [registerDone, setRegisterDone] = useState(false);
-    const [register, { loading }] = useRegisterMutation();
-
-    if (registerDone) {
-        return (
-            <>
-                <div>
-                    <h2>Welcome on board!</h2>
-                    <p>
-                        We sent you an email and please check your info box to confirm your email
-                        address. Thank!
-                    </p>
-                </div>
-            </>
-        );
-    }
+export const Login: React.FC<{}> = ({}) => {
+    const [login, { loading }] = useLoginMutation();
+    const navigate = useNavigate();
+    const { setUser } = useAuth();
 
     return (
         <Wrapper maxWidth={350} className="flex items-center h-full">
-            <div className="w-full">
-                <h2 className="text-gray-600 font-semibold">Sign up your account</h2>
-                <Form<RegisterFormInputs, RegisterFormInputsKeys>
+            <div className="w-full mb-32">
+                <h2 className="text-gray-600 font-semibold">Login to your account</h2>
+                <Form<LoginFormInputs, LoginFormInputsKeys>
                     className="flex flex-col justify-center"
                     onSubmit={async ({ values, setFieldErrorMessages }) => {
                         try {
-                            await register({ variables: { registerInput: { ...values } } });
-                            setRegisterDone(true);
+                            const response = await login({
+                                variables: { loginInput: { ...values } },
+                            });
+                            setUser({ ...response.data?.login?.user });
+                            // replace = true means history stack gets clean and the user cannot get back
+                            navigate("/home", { replace: true });
                         } catch (error) {
                             if (error instanceof Error && isApolloError(error)) {
                                 // NOTE: tmp solution
@@ -56,8 +48,7 @@ export const Register: React.FC<{}> = ({}) => {
                                 }
                                 fieldErrors.forEach((errorItem) =>
                                     setFieldErrorMessages((prev) => {
-                                        const currentField =
-                                            errorItem.field as RegisterFormInputsKeys;
+                                        const currentField = errorItem.field as LoginFormInputsKeys;
                                         prev[currentField] = errorItem.message;
                                         return prev;
                                     })
@@ -84,19 +75,19 @@ export const Register: React.FC<{}> = ({}) => {
                                     required
                                 />
                                 <Button className="mt-4" isLoading={loading}>
-                                    Sign Up
+                                    login
                                 </Button>
                             </>
                         );
                     }}
                 </Form>
                 <p className="mt-5 text-xs">
-                    Already have an account?{" "}
+                    Don&apos;t have an account yet?{" "}
                     <Link
                         className="border-b border-indigo-600 border-spacing-1 text-indigo-600 font-bold"
-                        to={"/login"}
+                        to={"/register"}
                     >
-                        Sign in
+                        Sign up for free
                     </Link>
                 </p>
             </div>
