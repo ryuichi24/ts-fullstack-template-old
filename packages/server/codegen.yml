@@ -5,6 +5,7 @@ generates:
     config:
       scalars:
         Void: "void"
+        DateTime: "Date"
     plugins:
       - "typescript"
       - "typescript-resolvers"

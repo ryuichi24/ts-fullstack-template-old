@@ -1,6 +1,0 @@
-type User {
-    id: String
-    email: String
-    createdAt: String
-    updatedAt: String
-}

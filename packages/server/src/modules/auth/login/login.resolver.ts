@@ -45,8 +45,6 @@ export const resolvers: Resolvers<MyContext> = {
             return {
                 user: {
                     ...existingUser,
-                    createdAt: existingUser.createdAt.toString(),
-                    updatedAt: existingUser.updatedAt.toString(),
                 },
             };
         },
