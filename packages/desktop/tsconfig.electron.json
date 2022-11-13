@@ -3,5 +3,5 @@
     "module": "CommonJS",
     "outDir": "dist"
   },
-  "include": ["src/main/**/*"]
+  "include": ["src/main/**/*", "src/preload/**/*"]
 }

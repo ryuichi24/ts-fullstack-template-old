@@ -24,7 +24,7 @@ function createMainWindow() {
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: true,
-            preload: path.resolve(__dirname, "preload.js"),
+            preload: path.resolve(path.dirname(__dirname), "preload"),
         },
     });
 
@@ -32,7 +32,7 @@ function createMainWindow() {
         mainWindow.webContents.openDevTools();
         mainWindow.loadURL(`http://localhost:${RENDERER_PORT}`);
     } else {
-        mainWindow.loadFile(path.resolve(path.dirname(__dirname), "dist/index.html"));
+        mainWindow.loadFile(path.resolve(path.dirname(__dirname), "index.html"));
     }
 }
 

@@ -1,20 +1,24 @@
 {
   "name": "desktop",
-  "productName": "Vite + React + TS + Electron",
+  "author": {
+    "email": "ryuichi.nishi24@gmail.com",
+    "name": "Ryuichi Nishi",
+    "url": "https://github.com/ryuichi24"
+  },
+  "homepage": "https://example.com",
   "private": true,
   "version": "0.0.0",
   "type": "commonjs",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "dotenv -e .env.development concurrently \"vite\" \"npm run watch:electron\" \"electronmon dist\"",
+    "dev": "dotenv -e .env.development concurrently \"vite\" \"npm run watch:electron\" \"electronmon dist/main\"",
     "watch:electron": "tsc --watch --project tsconfig.electron.json",
     "build": "npm run build:vite && npm run build:electron",
     "cleanup": "rimraf dist out",
     "preview": "vite preview",
     "build:electron": "tsc --project tsconfig.electron.json",
     "build:vite": "tsc && dotenv -e .env.production vite build",
-    "package": "npm run cleanup && npm run build && electron-forge package",
-    "make": "npm run cleanup && npm run build && electron-forge make",
+    "dist" :"npm run cleanup && npm run build && electron-builder --config electron-builder.config.js",
     "lint": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx,json}\"",
     "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
   },
@@ -38,6 +42,7 @@
     "concurrently": "7.5.0",
     "dotenv-cli": "6.0.0",
     "electron": "21.2.3",
+    "electron-builder": "23.6.0",
     "electronmon": "2.0.2",
     "eslint": "8.27.0",
     "eslint-plugin-react": "7.31.10",
