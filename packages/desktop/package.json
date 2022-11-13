@@ -6,7 +6,7 @@
   "type": "commonjs",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "dotenv -e .env.development concurrently \"vite\" \"electronmon dist\"",
+    "dev": "dotenv -e .env.development concurrently \"vite\" \"npm run watch:electron\" \"electronmon dist\"",
     "watch:electron": "tsc --watch --project tsconfig.electron.json",
     "build": "npm run build:vite && npm run build:electron",
     "cleanup": "rimraf dist src/renderer/dist out",

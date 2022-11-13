@@ -6,6 +6,7 @@
   "scripts": {
     "dev:server": "npm run dev -w server",
     "dev:web": "npm run dev -w web",
+    "dev:desktop": "npm run dev -w desktop",
     "watch:server": "npm run watch -w server",
     "gen:gql:web": "npm run gen:gql -w web",
     "gen:gql:server": "npm run gen:gql -w server",
