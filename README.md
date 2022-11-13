@@ -7,6 +7,7 @@ This is a template project for typescript full-stack project.
 - React
 - Express
 - Mongo DB
+- electron
 - Prisma (ORM)
 - jest (testing lib)
 - eslint
