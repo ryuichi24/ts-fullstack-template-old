@@ -17,25 +17,24 @@
     "make": "npm run cleanup && npm run build && electron-forge make"
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@electron-forge/cli": "^6.0.1",
-    "@electron-forge/maker-deb": "^6.0.1",
-    "@electron-forge/maker-rpm": "^6.0.1",
-    "@electron-forge/maker-squirrel": "^6.0.1",
-    "@electron-forge/maker-zip": "^6.0.1",
-    "@types/react": "^18.0.24",
-    "@types/react-dom": "^18.0.8",
-    "@vitejs/plugin-react": "^2.2.0",
+    "@electron-forge/cli": "6.0.1",
+    "@electron-forge/maker-deb": "6.0.1",
+    "@electron-forge/maker-rpm": "6.0.1",
+    "@electron-forge/maker-squirrel": "6.0.1",
+    "@electron-forge/maker-zip": "6.0.1",
+    "@types/react": "18.0.24",
+    "@types/react-dom": "18.0.8",
+    "@vitejs/plugin-react": "2.2.0",
     "concurrently": "7.5.0",
     "dotenv-cli": "6.0.0",
     "electron": "21.2.3",
     "electronmon": "2.0.2",
     "rimraf": "3.0.2",
-    "typescript": "^4.6.4",
-    "vite": "^3.2.3"
+    "typescript": "4.6.4",
+    "vite": "3.2.3"
   }
 }

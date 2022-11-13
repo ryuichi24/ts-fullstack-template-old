@@ -1,6 +1,7 @@
 module.exports = {
   packagerConfig: {
     electronPackagerConfig: {
+      // https://stackoverflow.com/questions/46857534/electron-forge-how-to-specify-a-source-directory-for-packaging
       dir: "./dist",
     },
   },
