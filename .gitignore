@@ -2,3 +2,7 @@
 .vscode
 .docker
 node_modules
+
+.env
+.env.development
+.env.production
