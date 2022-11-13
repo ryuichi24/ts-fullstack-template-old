@@ -14,7 +14,7 @@
     "dev": "dotenv -e .env.development concurrently \"vite\" \"npm run watch:electron\" \"electronmon dist/main\"",
     "watch:electron": "tsc --watch --project tsconfig.electron.json",
     "build": "npm run build:vite && npm run build:electron",
-    "cleanup": "rimraf dist out",
+    "cleanup": "rimraf dist out release",
     "preview": "vite preview",
     "build:electron": "tsc --project tsconfig.electron.json",
     "build:vite": "tsc && dotenv -e .env.production vite build",

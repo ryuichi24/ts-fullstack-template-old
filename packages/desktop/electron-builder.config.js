@@ -1,7 +1,8 @@
-// https://www.electron.build/configuration/configuration#Metadata-homepage
+// 
 /**
  * @type {import('electron-builder').Configuration}
  * @see https://www.electron.build/configuration/configuration
+ * @see https://www.electron.build/configuration/configuration#Metadata-homepage
  */
 const config = {
     appId: "YourAppID",
@@ -41,4 +42,5 @@ const config = {
     },
 };
 
+// eslint-disable-next-line no-undef
 module.exports = config;

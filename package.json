@@ -25,7 +25,8 @@
     "format:all": "npm run format:server && npm run format:web && format:desktop",
     "createNodemailerTestAccount:server": "npm run createNodemailerTestAccount -w server",
     "resetDB:server": "npm run resetDB -w server",
-    "postinstall": "git config core.hooksPath ./.hooks"
+    "postinstall": "git config core.hooksPath ./.hooks",
+    "dist": "npm run dist -w desktop"
   },
   "repository": {
     "type": "git",
