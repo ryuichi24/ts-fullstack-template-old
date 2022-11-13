@@ -1,0 +1,5 @@
+// https://stackoverflow.com/a/64283139/13723015
+{
+    "extends": "./tsconfig.json",
+    "include": ["src", ".eslintrc.js", "postcss.config.js", "tailwind.config.js", "vite.config.ts"]
+}

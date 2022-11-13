@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import * as path from "path";
 import { BrowserWindow, app } from "electron";
 
@@ -26,7 +28,7 @@ function createMainWindow() {
         mainWindow.loadURL(`http://localhost:${RENDERER_PORT}`);
     } else {
         mainWindow.loadFile(
-            path.resolve(path.dirname(__dirname), "src", "renderer/dist/index.html")
+            path.resolve(path.dirname(__dirname), "dist/index.html")
         );
     }
 }

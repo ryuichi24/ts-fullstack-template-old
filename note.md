@@ -43,6 +43,7 @@ npx tsc --init
 
 ```bash
 npm install -D -E eslint prettier
+npm install -DE eslint-plugin-react eslint-plugin-react-hooks @typescript-eslint/eslint-plugin @typescript-eslint/parser
 ```
 
 ```bash

@@ -9,7 +9,7 @@ export default defineConfig({
     port: +process.env.RENDERER_PORT || 7000
   },
   build: {
-    outDir: 'dist',
+    outDir: '../../dist',
   },
   plugins: [react()],
 })
